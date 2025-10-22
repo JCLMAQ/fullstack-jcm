@@ -5,7 +5,7 @@
 Cette application est un **monorepo Nx** avec une architecture fullstack basée sur **ZenStack + Prisma + NestJS + Angular**.
 
 ### Structure Clé
-- **Apps** : `apps/backend/nestjs` (NestJS) + `apps/frontend/jcm-app` (Angular)
+- **Apps** : `apps/backend/nest-app` (NestJS) + `apps/frontend/app-jcm` (Angular)
 - **Libs** : Bibliothèques partagées par domaine (`libs/backend/*`, `libs/frontend/*`)
 - **ZModel** : Schéma de base de données centralisé dans `zmodel/schema.zmodel`
 - **Scripts** : Utilitaires de configuration dans `scripts/`

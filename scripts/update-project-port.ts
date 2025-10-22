@@ -3,7 +3,7 @@ import '@dotenvx/dotenvx/config';
 import { readFile, writeFile } from 'fs/promises';
 
 async function updateProjectConfig() {
-  const projectJsonPath = './apps/frontend/dev-app/project.json';
+  const projectJsonPath = './apps/frontend/app-jcm/project.json';
   const port = process.env.API_FRONTEND_PORT || '4200';
 
   try {

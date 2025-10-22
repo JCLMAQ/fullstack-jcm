@@ -59,12 +59,12 @@ function generateEnvironmentContent(isProduction: boolean): string {
 const environments = [
   {
     name: 'development',
-    path: './apps/frontend/dev-app/environments/environment.ts',
+    path: './apps/frontend/app-jcm/environments/environment.ts',
     isProduction: false
   },
   {
     name: 'production',
-    path: './apps/frontend/dev-app/environments/environment.prod.ts',
+    path: './apps/frontend/app-jcm/environments/environment.prod.ts',
     isProduction: true
   }
 ];

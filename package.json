@@ -5,7 +5,7 @@
   "scripts": {
 
     "start:backend:dev": "pnpm run configproxy && nx serve nest-app --watch",
-    "start:frontend:dev": "pnpm run configangular -- --environment=dev && pnpm run update-project-port && dotenvx run -- nx serve dev-app --proxy-config ./proxy.config.json",
+    "start:frontend:dev": "pnpm run configangular -- --environment=dev && pnpm run update-project-port && dotenvx run -- nx serve app-jcm --proxy-config ./proxy.config.json",
     "start:prisma": "pnpm run prisma:generate && pnpm run prisma-migrate",
     "pnpm-install": "pnpm install --no-frozen-lockfile",
     "pnpm-auto-update": "pnpm update",
