@@ -15,12 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@be/changestracking": [
+        "libs/backend/utilities/changestracking/src/index.ts"
+      ],
       "@be/db-config": ["libs/backend/utilities/db-config/src/index.ts"],
+      "@be/exception-filter": [
+        "libs/backend/utilities/exception-filter/src/index.ts"
+      ],
+      "@be/mails": ["libs/backend/utilities/mails/src/index.ts"],
       "@be/time-util": ["libs/backend/utilities/time-util/src/index.ts"],
       "@db/prisma": ["libs/db/src/index.ts"],
       "@db/prisma-client": ["libs/backend/prisma-client/src/index.ts"],
-      "@be/exception-filter": [
-        "libs/backend/utilities/exception-filter/src/index.ts"
+      "@be/files-utilities": [
+        "libs/backend/utilities/files-utilities/src/index.ts"
       ]
     }
   },
