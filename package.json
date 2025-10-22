@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-
     "start:backend:dev": "pnpm run configproxy && nx serve nest-app --watch",
     "start:frontend:dev": "pnpm run configangular -- --environment=dev && pnpm run update-project-port && dotenvx run -- nx serve app-jcm --proxy-config ./proxy.config.json",
     "start:prisma": "pnpm run prisma:generate && pnpm run prisma-migrate",
@@ -21,7 +20,6 @@
     "configangular": "dotenvx run -- npx tsx ./scripts/setenv.ts",
     "update-project-port": "dotenvx run -- npx tsx ./scripts/update-project-port.ts",
     "configproxy": "dotenvx run -- ts-node ./scripts/setproxyconfig.ts"
-
   },
   "private": true,
   "dependencies": {
@@ -33,30 +31,31 @@
     "@angular/platform-browser-dynamic": "~20.3.0",
     "@angular/router": "~20.3.0",
     "@nestjs/common": "^11.0.0",
-    "@nestjs/core": "^11.0.0",
     "@nestjs/config": "^3.0.0",
+    "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
     "@nestjs/swagger": "^11.2.1",
-    "axios": "^1.6.0",
-    "reflect-metadata": "^0.1.13",
     "@prisma/client": "^6.17.1",
+    "axios": "^1.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "multer": "^2.0.2",
     "path": "^0.12.7",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "~7.8.0",
     "sharp": "^0.34.4",
     "swagger-ui-express": "^5.0.1",
-    "rxjs": "~7.8.0",
+    "zod": "^4.1.12",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.51.0",
     "@angular-devkit/core": "~20.3.0",
     "@angular-devkit/schematics": "~20.3.0",
     "@angular/build": "~20.3.0",
     "@angular/cli": "~20.3.0",
     "@angular/compiler-cli": "~20.3.0",
     "@angular/language-service": "~20.3.0",
+    "@dotenvx/dotenvx": "^1.51.0",
     "@eslint/js": "^9.8.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.0",
