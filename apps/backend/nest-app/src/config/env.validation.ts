@@ -17,14 +17,14 @@ export type EnvConfig = z.infer<typeof envValidationSchema>;
  */
 export function validateEnvironment(config: Record<string, unknown>): EnvConfig {
   const result = envValidationSchema.safeParse(config);
-  
+
   if (!result.success) {
-    const errors = result.error.issues.map(issue => 
+    const errors = result.error.issues.map(issue =>
       `${issue.path.join('.')}: ${issue.message}`
     ).join(', ');
-    
+
     throw new Error(`Configuration validation failed: ${errors}`);
   }
-  
+
   return result.data;
 }
