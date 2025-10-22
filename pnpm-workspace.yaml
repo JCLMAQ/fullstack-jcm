@@ -2,5 +2,10 @@ autoInstallPeers: true
 
 onlyBuiltDependencies:
   - '@nestjs/core'
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@scarf/scarf'
+  - prisma
+  - sharp
 
 strictPeerDependencies: false
