@@ -1,2 +1,6 @@
 autoInstallPeers: true
+
+onlyBuiltDependencies:
+  - '@nestjs/core'
+
 strictPeerDependencies: false
