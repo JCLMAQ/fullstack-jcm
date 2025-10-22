@@ -5,6 +5,8 @@ onlyBuiltDependencies:
   - '@prisma/client'
   - '@prisma/engines'
   - '@scarf/scarf'
+  - '@swc/core'
+  - nx
   - prisma
   - sharp
 
