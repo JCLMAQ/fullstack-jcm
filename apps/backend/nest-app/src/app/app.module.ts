@@ -1,4 +1,6 @@
 import { DbConfigModule } from '@be/db-config';
+import { AllExceptionsFilter, ExceptionFilterModule } from '@be/exception-filter';
+import { TimeUtilService } from '@be/time-util';
 import { PrismaClientModule } from '@db/prisma-client';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -14,6 +16,7 @@ import { AppService } from './app.service';
   imports: [
     PrismaClientModule,
     DbConfigModule,
+    ExceptionFilterModule,
 
     ConfigModule.forRoot({
       // envFilePath: '../.development.env', // Look for .env file in the main directory and not in the backend directory
@@ -53,24 +56,28 @@ import { AppService } from './app.service';
       inject: [ConfigService],
     }),
 
-  ClsModule.forRoot({
-    // Register the ClsModule and automatically mount the ClsMiddleware
-    global: true,
-    middleware: {
-      mount: true,
-      setup: (cls, req) => {
-        const userId = req.headers['x-user-id'];
-        const userRole = req.headers['x-user-role'] ?? 'USER';
-        cls.set(
-          'user',
-          userId ? { id: Number(userId), role: userRole } : undefined,
-        );
+    ClsModule.forRoot({
+      // Register the ClsModule and automatically mount the ClsMiddleware
+      global: true,
+      middleware: {
+        mount: true,
+        setup: (cls, req) => {
+          const userId = req.headers['x-user-id'];
+          const userRole = req.headers['x-user-role'] ?? 'USER';
+          cls.set(
+            'user',
+            userId ? { id: Number(userId), role: userRole } : undefined,
+          );
+        },
       },
-    },
-    }),
+      }),
 
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    TimeUtilService,
+    AllExceptionsFilter
+  ],
 })
 export class AppModule {}
