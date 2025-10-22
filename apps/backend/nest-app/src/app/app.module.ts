@@ -1,7 +1,11 @@
 import { DbConfigModule } from '@be/db-config';
 import { PrismaClientModule } from '@db/prisma-client';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MulterModule } from '@nestjs/platform-express/multer';
+import { ClsModule } from 'nestjs-cls';
+import { AcceptLanguageResolver, HeaderResolver, I18nJsonLoader, I18nModule, QueryResolver } from 'nestjs-i18n';
+import path from 'path';
 import { validateEnvironment } from '../config/env.validation';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -18,6 +22,51 @@ import { AppService } from './app.service';
       expandVariables: true, // Allow expanded variable = ${VARIABLE_NAME}
       cache: true, // To accelarate the env variables loading
       validate: validateEnvironment, // Utilisation de Zod au lieu de Joi
+    }),
+
+    I18nModule.forRoot({
+      fallbackLanguage: 'en',
+      fallbacks: {
+        'en-CA': 'fr',
+        'en-*': 'en',
+        'fr-*': 'fr',
+        pt: 'pt-BR',
+      },
+      loader: I18nJsonLoader,
+      loaderOptions: {
+      path: path.join(__dirname, 'assets/i18n/'),
+        watch: true,
+      },
+      resolvers: [
+        { use: QueryResolver, options: ['lang', 'locale', 'l'] },
+        new HeaderResolver(['x-custom-lang']),
+        AcceptLanguageResolver,
+      ],
+    }),
+
+    MulterModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        dest: configService.get<string>('FILES_STORAGE_DEST') || './upload',
+        limits: {fileSize: configService.get<number>('FILES_MAX_SIZE') || 2000000}
+      }),
+      inject: [ConfigService],
+    }),
+
+  ClsModule.forRoot({
+    // Register the ClsModule and automatically mount the ClsMiddleware
+    global: true,
+    middleware: {
+      mount: true,
+      setup: (cls, req) => {
+        const userId = req.headers['x-user-id'];
+        const userRole = req.headers['x-user-role'] ?? 'USER';
+        cls.set(
+          'user',
+          userId ? { id: Number(userId), role: userRole } : undefined,
+        );
+      },
+    },
     }),
 
   ],
