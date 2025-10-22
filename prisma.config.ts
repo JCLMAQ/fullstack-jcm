@@ -5,14 +5,14 @@ import { defineConfig } from "prisma/config";
 // dotenvx gère automatiquement l'expansion des variables
 
 export default defineConfig({
-  schema: path.join("libs/db/prisma", "schema.prisma"),
+  schema: path.join("libs/db/src/lib/prisma", "schema.prisma"),
   migrations: {
-    path: path.join("libs/db", "migrations"),
+    path: path.join("libs/db/src/lib", "migrations"),
   },
   views: {
-    path: path.join("libs/db/views", "views"),
+    path: path.join("libs/db/src/lib/views", "views"),
   },
   typedSql: {
-    path: path.join("libs/db/queries", "queries"),
+    path: path.join("libs/db/src/lib/queries", "queries"),
   }
 });

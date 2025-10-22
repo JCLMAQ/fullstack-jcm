@@ -11,8 +11,6 @@
 
 import * as process from 'node:process'
 import * as path from 'node:path'
-import { fileURLToPath } from 'node:url'
-globalThis['__dirname'] = path.dirname(fileURLToPath(import.meta.url))
 
 import * as runtime from "@prisma/client/runtime/library"
 import * as $Enums from "./enums.ts"
@@ -41,7 +39,7 @@ export { Prisma }
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node")
-path.join(process.cwd(), "libs/db/generated/prisma/libquery_engine-darwin-arm64.dylib.node")
+path.join(process.cwd(), "libs/db/src/lib/generated/prisma/libquery_engine-darwin-arm64.dylib.node")
 
 /**
  * Model Organization
