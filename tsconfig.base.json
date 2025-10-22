@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fullstack-jcm/db": ["libs/db/src/index.ts"],
-      "@fullstack-jcm/prisma-client": [
+      "@db/prisma": ["libs/db/src/index.ts"],
+      "@be/prisma-client": [
         "libs/backend/prisma-client/src/index.ts"
       ]
     }
