@@ -7,21 +7,18 @@ Cette application est un **monorepo Nx** avec une architecture fullstack basée 
 ### Structure Clé
 - **Apps** : `apps/backend/nest-app` (NestJS) + `apps/frontend/app-jcm` (Angular)
 - **Libs** : Bibliothèques partagées par domaine (`libs/backend/*`, `libs/frontend/*`)
-- **ZModel** : Schéma de base de données centralisé dans `zmodel/schema.zmodel`
+- **Prisma** : Schéma de base de données centralisé dans `libs/db/prisma/schema.prisma`
 - **Scripts** : Utilitaires de configuration dans `scripts/`
 
 ## Stack Technique Spécifique
 
-### ZenStack + Prisma (Couche Données)
-- **Schéma principal** : `zmodel/schema.zmodel` (pas de `schema.prisma` direct)
-- **Génération** : `pnpm run zenstack:generate` puis `pnpm run prisma:generate`
-- **Migrations** : `node prisma-migrate-expand.js` (wrapper dotenv personnalisé)
-- **Services améliorés** : Utilise `EnhancedPrismaService` avec politiques d'accès ZenStack
+### Prisma (Couche Données)
+- **Schéma principal** : `libs/db/prisma/schema.prisma`
+- **Génération** : `pnpm run prisma:generate`
 
 ### NestJS (Backend)
 - **IAM/Auth** : Module d'authentification complet dans `libs/backend/iam` + `libs/backend/auths`
 - **Guards multiples** : Authentication, Roles, Permissions, Policies (tous actifs par défaut)
-- **Middleware ZenStack** : Route `/zen` pour API REST auto-générée via `CrudMiddleware`
 - **Configuration** : Variables d'environnement via `DbConfigService` et base de données
 
 ### Angular (Frontend)
@@ -44,8 +41,8 @@ pnpm run start:frontend:dev
 ```
 
 ### Modifications Schema
-1. Modifier `zmodel/schema.zmodel`
-2. `pnpm run start:zenstack-prisma` (génère + migre)
+1. Modifier `libs/db/prisma/schema.prisma`
+2. `pnpm run start:prisma` (génère + migre)
 3. Redémarrer les services
 
 ### Seeding
@@ -57,7 +54,7 @@ pnpm run start:frontend:dev
 
 ### Structure des Modules
 - **Repository Pattern** : Services utilisent des repositories (ex: `TasksRepository`)
-- **CRUD Services** : Services générés automatiquement dans `zmodel/prisma/generated/`
+- **CRUD Services** : Services générés automatiquement dans `libs/db/prisma/generated/`
 - **Validation** : `class-validator` + `ValidationPipe` global
 - **Sérialisation** : `ClassSerializerInterceptor` global
 
@@ -65,7 +62,7 @@ pnpm run start:frontend:dev
 - **Auth Multi-mode** : Password + Passwordless + 2FA
 - **Soft Delete** : `isDeleted` + `isDeletedDT` 
 - **Validation Email** : `AccountValidation` + tokens
-- **Rôles/Permissions** : Système complet avec politiques ZenStack
+<!-- - **Rôles/Permissions** : Système complet avec politiques ZenStack -->
 
 ### Configuration
 - **Priorité ENV** : Environnement > Base de données (`DbConfigService.searchConfigParamEnvFirst`)
@@ -74,9 +71,9 @@ pnpm run start:frontend:dev
 
 ## Points d'Intégration Critiques
 
-### ZenStack Middleware
+<!-- ### ZenStack Middleware
 Route `/zen` expose automatiquement toutes les entités via REST avec politiques d'accès.
-Headers requis : `x-user-id`, `x-user-role`
+Headers requis : `x-user-id`, `x-user-role` -->
 
 ### Services Prisma
 - `PrismaService` : Service de base
@@ -86,4 +83,4 @@ Headers requis : `x-user-id`, `x-user-role`
 ### Configuration Environment
 Variables critiques à définir dans `.env` :
 - `DATABASE_URL`, `API_*`, `NEST_SERVER_*`
-- Utiliser `dotenv -e ./.env` pour les commandes de base
+- Utiliser `dotenvx` pour les commandes de base
