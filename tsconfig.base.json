@@ -24,11 +24,36 @@
       ],
       "@be/mails": ["libs/backend/utilities/mails/src/index.ts"],
       "@be/time-util": ["libs/backend/utilities/time-util/src/index.ts"],
-      "@db/prisma": ["libs/db/src/index.ts"],
-      "@db/prisma-client": ["libs/backend/prisma-client/src/index.ts"],
       "@be/files-utilities": [
         "libs/backend/utilities/files-utilities/src/index.ts"
-      ]
+      ],
+      "@db/prisma": ["libs/db/src/index.ts"],
+      "@db/prisma-client": ["libs/backend/prisma-client/src/index.ts"],
+      "@fe/layout": ["libs/frontend/core/layout/src/index.ts"],
+      "@fe/auth": ["libs/frontend/core/auth/src/index.ts"],
+      "@fe/pages": ["libs/frontend/core/pages/src/index.ts"],
+      "@fe/services": ["libs/frontend/core/services/src/index.ts"],
+      "@fe/stores": ["libs/frontend/core/stores/src/index.ts"],
+      "@fe/tokens": ["libs/frontend/core/tokens/src/index.ts"],
+      "@fe/dashboard": [
+        "libs/frontend/shared/components/dashboard/src/index.ts"
+      ],
+      "@fe/file-mgt": ["libs/frontend/shared/components/file-mgt/src/index.ts"],
+      "@fe/image-mgt": [
+        "libs/frontend/shared/components/image-mgt/src/index.ts"
+      ],
+      "@fe/loading-container": [
+        "libs/frontend/shared/components/loading-container/src/index.ts"
+      ],
+      "@fe/messages": ["libs/frontend/shared/components/messages/src/index.ts"],
+      "@fe/material": ["libs/frontend/shared/material/src/index.ts"],
+      "@fe/date-utilities": [
+        "libs/frontend/shared/utils/date-utilities/src/index.ts"
+      ],
+      "@fe/signalform-utilities": [
+        "libs/frontend/shared/utils/signalform-utilities/src/index.ts"
+      ],
+      "@fe/user": ["libs/frontend/domains/user/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
