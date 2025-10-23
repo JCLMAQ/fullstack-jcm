@@ -14,6 +14,8 @@ import { appRoutes } from './app.routes';
 import { DICTIONARIES } from './data/dictionaries';
 import { APP_MENU_ITEMS } from './data/menu-items';
 
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+// import { provideAnimations } from '@angular/platform-browser/animations';
 import { ENVIRONMENT_DATA } from '../../environments/environment';
 
 export const appConfig: ApplicationConfig = {
@@ -22,6 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(appRoutes, withComponentInputBinding()),
+    // provideAnimations(),
 
     provideHttpClient(
           withFetch(),
@@ -47,7 +50,15 @@ export const appConfig: ApplicationConfig = {
   // Provide the menu items for the left menu
   { provide: MENU_ITEMS_TOKEN, useValue: APP_MENU_ITEMS },
   // Provide the environment configuration for the API URL and other settings
-  { provide: ENVIRONMENT_TOKEN, useValue: ENVIRONMENT_DATA},
+  { provide: ENVIRONMENT_TOKEN, useValue: ENVIRONMENT_DATA },
+  {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        appearance: 'outline',
+        floatLabel: 'never',
+        subscriptSizing: 'dynamic',
+      },
+    },
 
   ],
 };
