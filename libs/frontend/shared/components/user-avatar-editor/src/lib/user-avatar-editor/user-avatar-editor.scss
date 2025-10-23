@@ -1,0 +1,55 @@
+ .emoji-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .emoji-button {
+      min-width: 60px !important;
+      height: 60px;
+      font-size: 24px;
+      border: 2px solid transparent;
+      border-radius: 8px;
+    }
+
+    .emoji-button.selected {
+      border-color: var(--mat-sys-primary);
+      background-color: var(--mat-sys-primary-container);
+    }
+
+    .emoji-button:hover {
+      border-color: var(--mat-sys-outline);
+    }
+
+    .upload-area {
+      border: 2px dashed var(--mat-sys-outline);
+      border-radius: 8px;
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: var(--mat-sys-surface-variant);
+    }
+
+    .upload-area:hover {
+      border-color: var(--mat-sys-primary);
+      background-color: var(--mat-sys-primary-container);
+    }
+
+    .upload-area.dragover {
+      border-color: var(--mat-sys-primary);
+      background-color: var(--mat-sys-primary-container);
+      border-style: solid;
+    }
+
+    .upload-content {
+      pointer-events: none;
+    }
+
+    .upload-icon {
+      font-size: 48px;
+      color: var(--mat-sys-primary);
+      margin-bottom: 16px;
+    }

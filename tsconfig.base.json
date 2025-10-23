@@ -53,7 +53,16 @@
       "@fe/signalform-utilities": [
         "libs/frontend/shared/utils/signalform-utilities/src/index.ts"
       ],
-      "@fe/user": ["libs/frontend/domains/user/src/index.ts"]
+      "@fe/user": ["libs/frontend/domains/user/src/index.ts"],
+      "@fe/user-avatar": [
+        "libs/frontend/shared/components/user-avatar/src/index.ts"
+      ],
+      "@fe/profile-editor": [
+        "libs/frontend/shared/components/profile-editor/src/index.ts"
+      ],
+      "@fe/user-avatar-editor": [
+        "libs/frontend/shared/components/user-avatar-editor/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

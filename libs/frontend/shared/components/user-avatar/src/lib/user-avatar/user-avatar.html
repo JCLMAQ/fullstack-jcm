@@ -1,0 +1,19 @@
+  @if (isEmoji()) {
+      <div
+        [class]="cssClass()"
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+        [style.justify-content]="'center'"
+        [style.font-size.px]="getEmojiSize()"
+        [style.background-color]="'var(--mat-sys-surface-container)'"
+      >
+        {{ photoUrl() }}
+      </div>
+    } @else {
+      <img
+        [src]="getImageSrc()"
+        [alt]="alt()"
+        [class]="cssClass()"
+        (error)="onImageError($event)"
+      />
+    }
