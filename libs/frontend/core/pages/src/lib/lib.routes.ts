@@ -1,4 +1,12 @@
 import { Route } from '@angular/router';
-import { Pages } from './pages/pages';
+import { Home } from './home/home';
+import { PageNotFound } from './page-not-found/page-not-found';
 
-export const pagesRoutes: Route[] = [{ path: '', component: Pages }];
+export const pagesRoutes: Route[] = [
+
+  { path: 'home', component: Home },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'page-not-found', component: PageNotFound },
+  { path: '**', component: PageNotFound },
+
+];

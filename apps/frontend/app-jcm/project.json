@@ -14,9 +14,7 @@
       "options": {
         "outputPath": "dist/apps/frontend/app-jcm",
         "browser": "apps/frontend/app-jcm/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": [],
         "tsConfig": "apps/frontend/app-jcm/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -52,7 +50,8 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "outputHashing": "media"
         }
       },
       "defaultConfiguration": "production"
