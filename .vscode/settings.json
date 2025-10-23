@@ -19,5 +19,12 @@
         "titleBar.inactiveForeground": "#e7e7e799"
     },
     "peacock.color": "#b52e31",
-    "postman.settings.dotenv-detection-notification-visibility": false
+    "postman.settings.dotenv-detection-notification-visibility": false,
+    "i18n-ally.localesPaths": [
+        "apps/frontend/app-jcm/public/i18n",
+        "libs/frontend/shared/components/messages",
+        "apps/backend/nest-app/src/assets/i18n",
+        "libs/frontend/core/services/src/lib/messages",
+        "libs/frontend/shared/components/messages/src/lib/messages"
+    ]
 }

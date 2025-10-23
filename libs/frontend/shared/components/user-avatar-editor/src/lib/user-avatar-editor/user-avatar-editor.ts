@@ -16,6 +16,7 @@ import { UserAvatar } from '@fe/user-avatar';
 @Component({
   selector: 'lib-user-avatar-editor',
   imports: [
+    UserAvatar,
     MatDialogModule,
     MatTabsModule,
     MatCardModule,
@@ -24,8 +25,7 @@ import { UserAvatar } from '@fe/user-avatar';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    FormsModule,
-    UserAvatar
+    FormsModule
   ],
   templateUrl: './user-avatar-editor.html',
   styleUrl: './user-avatar-editor.scss',

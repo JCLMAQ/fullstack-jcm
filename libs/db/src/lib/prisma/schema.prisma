@@ -10,31 +10,6 @@ generator client {
   importFileExtension    = "ts"
 }
 
-// generator nestjsDto {
-//   provider                        = "prisma-generator-nestjs-dto"
-//   output                          = "../generated/nestjs-dto"
-//   prismaClientImportPath          = ""
-//   outputToNestJsResourceStructure = "ftrue"
-//   flatResourceStructure           = "false"
-//   exportRelationModifierClasses   = "true"
-//   reExport                        = "true"
-//   generateFileTypes               = "all"
-//   createDtoPrefix                 = "Create"
-//   updateDtoPrefix                 = "Update"
-//   dtoSuffix                       = "Dto"
-//   entityPrefix                    = ""
-//   entitySuffix                    = "Entity"
-//   classValidation                 = "false"
-//   fileNamingStyle                 = "camel"
-//   noDependencies                  = "false"
-//   outputType                      = "class"
-//   definiteAssignmentAssertion     = "false"
-//   requiredResponseApiProperty     = "true"
-//   prettier                        = "false"
-//   wrapRelationsAsType             = "false"
-//   showDefaultValues               = "false"
-// }
-
 enum TaskState {
   CREATION
   STANDBY
@@ -201,7 +176,12 @@ model User {
   Gender        Gender?           @default(UNKNOWN)
   social        Json?             @db.Json()
   Language      Language?         @default(en)
+  // Image profile
   photoUrl      String?
+  avatarFile    File?             @relation("UserAvatar", fields: [avatarFileId], references: [id])
+  avatarFileId  String?           @unique()
+
+
   dateOfBirth   DateTime?
   // Emergency Contact Info
   hasEmergencyContact Boolean   @default(false)
@@ -478,6 +458,8 @@ model File {
   isPublic          Boolean   @default(false)
   isDeleted         Int       @default(0)
   isDeletedDT       DateTime?
+  // User Avatar association
+  UserAvatar        User?        @relation("UserAvatar")
 
   // File identification and metadata
   filename          String                 // Current filename in storage
@@ -618,6 +600,8 @@ model Image {
   isPublic      Boolean   @default(true)
   isDeleted     Int       @default(0)
   isDeletedDT   DateTime?
+  url           String    // Public URL or identifier
+  type          String?   // Image type or category
 
   // Image metadata
   filename      String
@@ -648,7 +632,7 @@ model Image {
   uploadedById  String
 
   // Generic association system
-  associatedId  String?   // ID of associated entity (Post, User, Organization, etc.)
+  associated_Id  String?   // ID of associated entity (Post, User, Organization, etc.)
   associationType String? // Type of associated entity ("post", "user", "organization", etc.)
   sequence      Int       @default(0) // Order in a collection
 

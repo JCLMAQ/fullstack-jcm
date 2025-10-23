@@ -8,6 +8,7 @@ import { ApiConfig } from '@fe/services';
   styleUrl: './user-avatar.scss',
 })
 export class UserAvatar {
+  constructor() {'//test'}
 
   photoUrl = input<string | null | undefined>('');
   alt = input<string>('User profile picture');

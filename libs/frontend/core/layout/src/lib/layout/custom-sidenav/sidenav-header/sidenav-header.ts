@@ -1,7 +1,7 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { AppStore } from '@fe/stores';
 import { MatDialog } from '@angular/material/dialog';
-import { ProfileEditorComponent } from '@fe/user-avatar';
+import { AppStore } from '@fe/stores';
+import { UserAvatarEditor } from '@fe/user-avatar-editor';
 
 @Component({
   selector: 'lib-sidenav-header',
@@ -23,7 +23,7 @@ export class SidenavHeader {
   );
 
   openProfileEditor() {
-    const dialogRef = this.dialog.open(ProfileEditorComponent, {
+    const dialogRef = this.dialog.open(UserAvatarEditor, {
       width: '600px',
       maxWidth: '90vw',
       maxHeight: '90vh'
