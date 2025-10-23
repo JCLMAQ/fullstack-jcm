@@ -38,6 +38,9 @@ importers:
       '@angular/router':
         specifier: ~20.3.7
         version: 20.3.7(@angular/common@20.3.7(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.7(@angular/common@20.3.7(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@angular/youtube-player':
+        specifier: ^20.2.10
+        version: 20.2.10(@angular/common@20.3.7(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@nestjs/common':
         specifier: ^11.1.7
         version: 11.1.7(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -68,9 +71,15 @@ importers:
       '@prisma/client':
         specifier: ^6.18.0
         version: 6.18.0(prisma@6.18.0(typescript@5.9.3))(typescript@5.9.3)
+      animate-css-grid:
+        specifier: ^1.5.1
+        version: 1.5.1
       axios:
         specifier: ^1.12.2
         version: 1.12.2
+      chart.js:
+        specifier: ^4.5.1
+        version: 4.5.1
       class-transformer:
         specifier: ^0.5.1
         version: 0.5.1
@@ -621,6 +630,13 @@ packages:
       '@angular/common': 20.3.7
       '@angular/core': 20.3.7
       '@angular/platform-browser': 20.3.7
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@angular/youtube-player@20.2.10':
+    resolution: {integrity: sha512-Lt5chKUtiERWiNOsVGgWsMBouuNByH6cdazIdKdELCbITPcifZpq+XjHA3Wij4MR8HwFOI8GBCJHdVSRm9vMhg==}
+    peerDependencies:
+      '@angular/common': ^20.0.0 || ^21.0.0
+      '@angular/core': ^20.0.0 || ^21.0.0
       rxjs: ^6.5.3 || ^7.4.0
 
   '@asamuzakjp/css-color@3.2.0':
@@ -2119,6 +2135,9 @@ packages:
     peerDependencies:
       tslib: '2'
 
+  '@kurkle/color@0.3.4':
+    resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
+
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
 
@@ -3055,6 +3074,12 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
+  '@popmotion/easing@1.0.2':
+    resolution: {integrity: sha512-IkdW0TNmRnWTeWI7aGQIVDbKXPWHVEYdGgd5ZR4SH/Ty/61p63jCjrPxX1XrR7IGkl08bjhJROStD7j+RKgoIw==}
+
+  '@popmotion/popcorn@0.4.4':
+    resolution: {integrity: sha512-jYO/8319fKoNLMlY4ZJPiPu8Ea8occYwRZhxpaNn/kZsK4QG2E7XFlXZMJBsTWDw7I1i0uaqyC4zn1nwEezLzg==}
+
   '@prisma/client@6.18.0':
     resolution: {integrity: sha512-jnL2I9gDnPnw4A+4h5SuNn8Gc+1mL1Z79U/3I9eE2gbxJG1oSA+62ByPW4xkeDgwE0fqMzzpAZ7IHxYnLZ4iQA==}
     engines: {node: '>=18.18'}
@@ -3614,6 +3639,12 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
+  '@types/lodash.throttle@4.1.9':
+    resolution: {integrity: sha512-PCPVfpfueguWZQB7pJQK890F2scYKoDUL3iM522AptHWn7d5NQmeS/LTEHIcLr5PaTzl3dK2Z0xSUHHTHwaL5g==}
+
+  '@types/lodash@4.17.20':
+    resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
+
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
 
@@ -3676,6 +3707,9 @@ packages:
 
   '@types/yargs@17.0.33':
     resolution: {integrity: sha512-WpxBCKWPLr4xSsHgz511rFJAM+wS28w2zEO1QDNY5zM/S8ok70NNfztH0xwhqKyaK0OHCbN98LDAZuy1ctxDkA==}
+
+  '@types/youtube@0.1.2':
+    resolution: {integrity: sha512-n1/KqusanheyQRWHamNZv8K3kydlRqyEsZEKxMTeNWXQTC15lZprITCUt+WgL1vAIvKHCjPBIWz/gf/KQLsB3g==}
 
   '@typescript-eslint/eslint-plugin@8.46.2':
     resolution: {integrity: sha512-ZGBMToy857/NIPaaCucIUQgqueOiq7HeAKkhlvqVV4lm089zUFW6ikRySx2v+cAhKeUCPuWVHeimyk6Dw1iY3w==}
@@ -4017,6 +4051,9 @@ packages:
       typescript: '*'
       typescript-eslint: ^8.0.0
 
+  animate-css-grid@1.5.1:
+    resolution: {integrity: sha512-Bw48dm3kjJshSO8TY6PtWJ7gvXluh2ad97zPiNu1jTRyRywAzsbKlwG45byL9cJ/x9N126rkU5U9y1jzHK8ttQ==}
+
   ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
     engines: {node: '>=6'}
@@ -4325,6 +4362,10 @@ packages:
 
   chardet@2.1.0:
     resolution: {integrity: sha512-bNFETTG/pM5ryzQ9Ad0lJOTa6HWD/YsScAR3EnCPZRPlQh77JocYktSHOUHelyhm8IARL+o4c4F1bP5KVOjiRA==}
+
+  chart.js@4.5.1:
+    resolution: {integrity: sha512-GIjfiT9dbmHRiYi6Nl2yFCq7kkwdkp1W/lp2J99rX0yo9tgJGn3lKQATztIjb5tVtevcBtIdICNWqlq5+E8/Pw==}
+    engines: {pnpm: '>=8'}
 
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -5279,6 +5320,12 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
+  framesync@4.1.0:
+    resolution: {integrity: sha512-MmgZ4wCoeVxNbx2xp5hN/zPDCbLSKiDt4BbbslK7j/pM2lg5S0vhTNv1v8BCVb99JPIo6hXBFdwzU7Q4qcAaoQ==}
+
+  framesync@6.1.2:
+    resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==}
+
   fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
@@ -5456,6 +5503,9 @@ packages:
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
+
+  hey-listen@1.0.8:
+    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
 
   homedir-polyfill@1.0.3:
     resolution: {integrity: sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA==}
@@ -6274,6 +6324,9 @@ packages:
   lodash.once@4.1.1:
     resolution: {integrity: sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==}
 
+  lodash.throttle@4.1.1:
+    resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
+
   lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
 
@@ -6985,6 +7038,9 @@ packages:
     resolution: {integrity: sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==}
     engines: {node: '>=10.13.0'}
 
+  popmotion@8.7.6:
+    resolution: {integrity: sha512-gzU0mRAik8FIEOP4Nk5yqYptJIvHLoq/IRU+rANmKjDZ7tynAivYQ9cIJAxVaoS9h0zfXvN0cFBAg93ncmHHkA==}
+
   portfinder@1.0.38:
     resolution: {integrity: sha512-rEwq/ZHlJIKw++XtLAO8PPuOQA/zaPJOZJ37BVuN97nLpMJeuDVLVGRwbFoBgLudgdTMP2hdRJP++H+8QOA3vg==}
     engines: {node: '>= 10.12'}
@@ -7488,6 +7544,9 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
+  safevalues@1.2.0:
+    resolution: {integrity: sha512-zIsuhjYvJCjfsfjoim2ab6gLKFYAnTiDSJGh0cC3T44L/4kNLL90hBG2BzrXPrHA3f8Ms8FSJ1mljKH5dVR1cw==}
+
   sass-embedded-all-unknown@1.93.2:
     resolution: {integrity: sha512-GdEuPXIzmhRS5J7UKAwEvtk8YyHQuFZRcpnEnkA3rwRUI27kwjyXkNeIj38XjUQ3DzrfMe8HcKFaqWGHvblS7Q==}
     cpu: ['!arm', '!arm64', '!riscv64', '!x64']
@@ -7942,6 +8001,12 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
 
+  style-value-types@3.2.0:
+    resolution: {integrity: sha512-ih0mGsrYYmVvdDi++/66O6BaQPRPRMQHoZevNNdMMcPlP/cH28Rnfsqf1UEba/Bwfuw9T8BmIMwbGdzsPwQKrQ==}
+
+  stylefire@7.0.3:
+    resolution: {integrity: sha512-Q0l7NSeFz/OkX+o6/7Zg3VZxSAZeQzQpYomWmIpOehFM/rJNMSLVX5fgg6Q48ut2ETNKwdhm97mPNU643EBCoQ==}
+
   stylehacks@6.1.1:
     resolution: {integrity: sha512-gSTTEQ670cJNoaeIp9KX6lZmm8LJ3jPB5yJmX8Zq/wQxOsAFXV3qjWzHas3YYk1qesuVIyYWWUpZ0vSE/dTSGg==}
     engines: {node: ^14 || ^16 || >=18.0}
@@ -8180,6 +8245,12 @@ packages:
   tsconfig-paths@4.2.0:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
+
+  tslib@1.14.1:
+    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+
+  tslib@2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
@@ -9086,6 +9157,15 @@ snapshots:
       '@angular/core': 20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/platform-browser': 20.3.7(@angular/common@20.3.7(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))
       rxjs: 7.8.2
+      tslib: 2.8.1
+
+  '@angular/youtube-player@20.2.10(@angular/common@20.3.7(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/common': 20.3.7(@angular/core@20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 20.3.7(@angular/compiler@20.3.7)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@types/youtube': 0.1.2
+      rxjs: 7.8.2
+      safevalues: 1.2.0
       tslib: 2.8.1
 
   '@asamuzakjp/css-color@3.2.0':
@@ -10699,6 +10779,8 @@ snapshots:
       '@jsonjoy.com/codegen': 1.0.0(tslib@2.8.1)
       tslib: 2.8.1
 
+  '@kurkle/color@0.3.4': {}
+
   '@leichtgewicht/ip-codec@2.0.5': {}
 
   '@listr2/prompt-adapter-inquirer@3.0.1(@inquirer/prompts@7.8.2(@types/node@24.9.1))(@types/node@24.9.1)(listr2@9.0.1)':
@@ -12077,6 +12159,16 @@ snapshots:
     dependencies:
       playwright: 1.56.1
 
+  '@popmotion/easing@1.0.2': {}
+
+  '@popmotion/popcorn@0.4.4':
+    dependencies:
+      '@popmotion/easing': 1.0.2
+      framesync: 4.1.0
+      hey-listen: 1.0.8
+      style-value-types: 3.2.0
+      tslib: 1.14.1
+
   '@prisma/client@6.18.0(prisma@6.18.0(typescript@5.9.3))(typescript@5.9.3)':
     optionalDependencies:
       prisma: 6.18.0(typescript@5.9.3)
@@ -12611,6 +12703,12 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
+  '@types/lodash.throttle@4.1.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash@4.17.20': {}
+
   '@types/mime@1.3.5': {}
 
   '@types/multer@2.0.0':
@@ -12678,6 +12776,8 @@ snapshots:
   '@types/yargs@17.0.33':
     dependencies:
       '@types/yargs-parser': 21.0.3
+
+  '@types/youtube@0.1.2': {}
 
   '@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
@@ -13042,6 +13142,14 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
       - supports-color
+
+  animate-css-grid@1.5.1:
+    dependencies:
+      '@popmotion/easing': 1.0.2
+      '@types/lodash.throttle': 4.1.9
+      framesync: 6.1.2
+      lodash.throttle: 4.1.1
+      popmotion: 8.7.6
 
   ansi-colors@4.1.3: {}
 
@@ -13414,6 +13522,10 @@ snapshots:
   char-regex@1.0.2: {}
 
   chardet@2.1.0: {}
+
+  chart.js@4.5.1:
+    dependencies:
+      '@kurkle/color': 0.3.4
 
   chokidar@3.6.0:
     dependencies:
@@ -14446,6 +14558,14 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
+  framesync@4.1.0:
+    dependencies:
+      hey-listen: 1.0.8
+
+  framesync@6.1.2:
+    dependencies:
+      tslib: 2.4.0
+
   fresh@0.5.2: {}
 
   fresh@2.0.0: {}
@@ -14629,6 +14749,8 @@ snapshots:
       function-bind: 1.1.2
 
   he@1.2.0: {}
+
+  hey-listen@1.0.8: {}
 
   homedir-polyfill@1.0.3:
     dependencies:
@@ -15670,6 +15792,8 @@ snapshots:
 
   lodash.once@4.1.1: {}
 
+  lodash.throttle@4.1.1: {}
+
   lodash.uniq@4.5.0: {}
 
   lodash@4.17.21: {}
@@ -16463,6 +16587,16 @@ snapshots:
 
   pngjs@5.0.0: {}
 
+  popmotion@8.7.6:
+    dependencies:
+      '@popmotion/easing': 1.0.2
+      '@popmotion/popcorn': 0.4.4
+      framesync: 4.1.0
+      hey-listen: 1.0.8
+      style-value-types: 3.2.0
+      stylefire: 7.0.3
+      tslib: 1.14.1
+
   portfinder@1.0.38:
     dependencies:
       async: 3.2.6
@@ -16965,6 +17099,8 @@ snapshots:
   safe-buffer@5.2.1: {}
 
   safer-buffer@2.1.2: {}
+
+  safevalues@1.2.0: {}
 
   sass-embedded-all-unknown@1.93.2:
     dependencies:
@@ -17469,6 +17605,19 @@ snapshots:
     dependencies:
       webpack: 5.102.1(@swc/core@1.13.5(@swc/helpers@0.5.17))(webpack-cli@6.0.1)
 
+  style-value-types@3.2.0:
+    dependencies:
+      hey-listen: 1.0.8
+      tslib: 1.14.1
+
+  stylefire@7.0.3:
+    dependencies:
+      '@popmotion/popcorn': 0.4.4
+      framesync: 4.1.0
+      hey-listen: 1.0.8
+      style-value-types: 3.2.0
+      tslib: 1.14.1
+
   stylehacks@6.1.1(postcss@8.5.6):
     dependencies:
       browserslist: 4.26.3
@@ -17718,6 +17867,10 @@ snapshots:
       json5: 2.2.3
       minimist: 1.2.8
       strip-bom: 3.0.0
+
+  tslib@1.14.1: {}
+
+  tslib@2.4.0: {}
 
   tslib@2.8.1: {}
 
