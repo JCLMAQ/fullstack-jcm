@@ -23,7 +23,7 @@ children: [
         path: 'dashboard',
         loadChildren: () =>
           import('@fe/dashboard').then((m) => m.dashboardRoutes),
-      }
+      },
     ],
   }
 
