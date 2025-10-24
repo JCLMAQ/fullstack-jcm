@@ -21,7 +21,8 @@ async function bootstrap() {
 
   // Configuration CORS pour permettre les requêtes depuis le frontend
   app.enableCors({
-    origin: ['http://localhost:4100', 'http://127.0.0.1:4100'],
+    origin: [process.env.API_FRONTEND_URL, process.env.API_FRONTEND_URL_IP],
+    // origin: ['http://localhost:4100', 'http://127.0.0.1:4100'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
