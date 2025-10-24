@@ -21,7 +21,7 @@ import { AppStore } from '@fe/stores';
 })
 export class Login {
 
-  private appStore = inject(AppStore);
+  appStore = inject(AppStore);
   router = inject(Router);
 
   email = signal('user1@test.be');
