@@ -1,7 +1,7 @@
 export type Environment = {
   production: boolean;
   API_BACKEND_URL: string;
-  API_BACKEND_PREFIX: string;
+  API_BACKEND_GLOBAL_PREFIX: string;
   API_FRONTEND_URL: string;
   API_FRONTEND: string;
   API_FRONTEND_PORT: string;

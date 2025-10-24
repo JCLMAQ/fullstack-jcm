@@ -15,7 +15,7 @@ const required = [
   'API_FRONTEND',
   'API_FRONTEND_PORT',
   'API_BACKEND_URL',
-  'API_BACKEND_PREFIX',
+  'API_BACKEND_GLOBAL_PREFIX',
   'API_BACKEND',
   'API_BACKEND_PORT',
   'API_SECRET',
@@ -42,7 +42,7 @@ function generateEnvironmentContent(isProduction: boolean): string {
     export const ENVIRONMENT_DATA = {
         production: ${isProduction},
         API_BACKEND_URL: "http://${process.env.API_BACKEND}:${process.env.API_BACKEND_PORT}",
-        API_BACKEND_PREFIX: "${process.env.API_BACKEND_PREFIX}",
+        API_BACKEND_GLOBAL_PREFIX: "${process.env.API_BACKEND_GLOBAL_PREFIX}",
         API_FRONTEND_URL: "http://${process.env.API_FRONTEND}:${frontendPort}",
         API_FRONTEND: "${process.env.API_FRONTEND}",
         API_FRONTEND_PORT: "${frontendPort}",
