@@ -28,8 +28,8 @@ async function bootstrap() {
     credentials: true,
   });
  // Enable shutdown hooks for Prisma
-  // const prismaService = app.get(PrismaClientService);
-  // await prismaService.enableShutdownHooks(app);
+  // const prismaClientService = app.get(PrismaClientService);
+  // await prismaClientService.enableShutdownHooks(app);
 
 
     /* Nestjs has a built-in validation pipe: The ValidationPipe provides a convenient approach

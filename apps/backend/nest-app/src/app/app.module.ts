@@ -1,5 +1,6 @@
 import { DbConfigModule } from '@be/db-config';
 import { AllExceptionsFilter, ExceptionFilterModule } from '@be/exception-filter';
+import { IamModule } from '@be/iam';
 import { TimeUtilModule, TimeUtilService } from '@be/time-util';
 import { PrismaClientModule } from '@db/prisma-client';
 import { Module } from '@nestjs/common';
@@ -75,6 +76,7 @@ import { AppService } from './app.service';
     DbConfigModule,
     ExceptionFilterModule,
     TimeUtilModule,
+    IamModule
 
   ],
   controllers: [AppController],

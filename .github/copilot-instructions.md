@@ -78,7 +78,7 @@ Headers requis : `x-user-id`, `x-user-role` -->
 ### Services Prisma
 - `PrismaService` : Service de base
 - `EnhancedPrismaService` : Avec politiques ZenStack (recommandé)
-- Import : `@prisma/prisma` pour le service, `@prisma/client` pour les types
+- Import : `@db/prisma` pour le service, `@prisma/client` pour les types
 
 ### Configuration Environment
 Variables critiques à définir dans `.env` :
