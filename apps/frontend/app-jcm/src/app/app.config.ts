@@ -16,6 +16,7 @@ import { APP_MENU_ITEMS } from './data/menu-items';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 // import { provideAnimations } from '@angular/platform-browser/animations';
+// import { AppStore } from '@fe/stores';
 import { ENVIRONMENT_DATA } from '../../environments/environment';
 
 export const appConfig: ApplicationConfig = {
@@ -59,6 +60,5 @@ export const appConfig: ApplicationConfig = {
         subscriptSizing: 'dynamic',
       },
     },
-
   ],
 };

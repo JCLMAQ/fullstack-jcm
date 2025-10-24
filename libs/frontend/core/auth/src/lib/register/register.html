@@ -1,1 +1,184 @@
-<p>register works!</p>
+<div
+class="flex gap-2 min-h-screen items-center justify-center bg-background"
+>
+<div
+  class="w-full max-w-[400px] ml-[200px] p-10 rounded-2xl shadow-xl bg-surface-container border border-outline-variant"
+>
+  <h1 class="text-2xl mb-2 text-on-surface">Register</h1>
+  <div class="flex gap-1 mb-8 text-sm text-on-surface">
+    <span>Already have an account?</span>
+    <button
+      type="button"
+      class="text-primary cursor-pointer bg-transparent border-none underline"
+      (click)="login()"
+    >
+      Sign in!
+    </button>
+  </div>
+  <form
+    [formGroup]="registerForm"
+    class="flex flex-col gap-5"
+    (ngSubmit)="register()"
+  >
+    <mat-form-field class="w-full">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        placeholder="Enter your email"
+        formControlName="email"
+      />
+      <mat-icon matSuffix>email</mat-icon>
+      @if (emailErrors().required) {
+      <mat-error> Email is required </mat-error>
+      }
+      @if (emailErrors().email) {
+      <mat-error> Please enter a valid email </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hidePassword() ? 'password' : 'text'"
+        placeholder="Enter your password"
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword.set(!hidePassword())"
+        type="button"
+        class="mr-1"
+      >
+        <mat-icon>{{
+          hidePassword() ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+      @if (passwordErrors().required) {
+      <mat-error> Password is required </mat-error>
+      }
+      @if (passwordErrors().minlength) {
+      <mat-error> Password must be at least 8 characters </mat-error>
+      }
+      <!-- Indicateur de force du mot de passe -->
+      @if (password().length > 0) {
+      <div class="mt-2">
+        <div class="flex items-center gap-2 text-sm">
+          <span>Password strength:</span>
+          <span [style.color]="passwordStrength().color" class="font-medium">
+            {{ passwordStrength().label }}
+          </span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+          <div
+            class="h-2 rounded-full transition-all duration-300"
+            [style.width.%]="passwordStrength().score * 20"
+            [style.background-color]="passwordStrength().color"
+          ></div>
+        </div>
+      </div>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>ConfirmPassword</mat-label>
+      <input
+        matInput
+        [type]="hidePassword() ? 'password' : 'text'"
+        placeholder="Confirm your password"
+        formControlName="confirmPassword"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword.set(!hidePassword())"
+        type="button"
+        class="mr-1"
+      >
+        <mat-icon>{{
+          hidePassword() ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+      @if (confirmPasswordErrors().required) {
+      <mat-error>Confirm Password is required </mat-error>
+      }
+      @if (confirmPasswordErrors().mismatch) {
+      <mat-error>Passwords do not match </mat-error>
+      }
+      <!-- Indicateur de correspondance des mots de passe -->
+      @if (confirmPassword().length > 0 && password().length > 0) {
+      <div class="mt-1 flex items-center gap-1 text-sm">
+        @if (passwordsMatch()) {
+        <mat-icon class="text-green-500 text-sm">check_circle</mat-icon>
+        <span class="text-green-600">Passwords match</span>
+        } @else {
+        <mat-icon class="text-red-500 text-sm">cancel</mat-icon>
+        <span class="text-red-600">Passwords don't match</span>
+        }
+      </div>
+      }
+    </mat-form-field>
+
+
+    <!-- Résumé du statut du formulaire -->
+    @if (email().length > 0 || password().length > 0 || confirmPassword().length > 0) {
+    <div class="mt-4 p-3 rounded-lg bg-gray-50 border">
+      <h4 class="text-sm font-medium mb-2 text-gray-700">Form Status</h4>
+      <div class="space-y-1 text-xs">
+        <div class="flex items-center gap-2">
+          <mat-icon class="text-xs" [class.text-green-500]="formSummary().emailValid" [class.text-red-500]="!formSummary().emailValid">
+            {{ formSummary().emailValid ? 'check_circle' : 'cancel' }}
+          </mat-icon>
+          <span>Valid email address</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <mat-icon class="text-xs" [class.text-green-500]="formSummary().passwordStrong" [class.text-red-500]="!formSummary().passwordStrong">
+            {{ formSummary().passwordStrong ? 'check_circle' : 'cancel' }}
+          </mat-icon>
+          <span>Strong password (3+ criteria)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <mat-icon class="text-xs" [class.text-green-500]="formSummary().passwordMatch" [class.text-red-500]="!formSummary().passwordMatch">
+            {{ formSummary().passwordMatch ? 'check_circle' : 'cancel' }}
+          </mat-icon>
+          <span>Passwords match</span>
+        </div>
+      </div>
+    </div>
+    }
+
+    <button
+      mat-flat-button
+      class="w-full mt-3"
+      type="submit"
+      [disabled]="!isFormValid()"
+    >
+      Register
+    </button>
+  </form>
+  <!-- Debug Panel (Development only) -->
+  <!-- Uncomment for debugging -->
+  <!--
+  <details class="mt-4 mb-4">
+    <summary class="cursor-pointer text-sm text-gray-600 hover:text-gray-800">
+      🔧 Debug Info (Dev only)
+    </summary>
+    <pre class="mt-2 p-3 bg-gray-100 rounded text-xs overflow-auto">{{ debugInfo() | json }}</pre>
+  </details>
+  -->
+
+  <div class="flex gap-1 mb-8 text-sm text-on-surface">
+    <br><br>
+    <span>Want to Cancel ?</span>
+    <button
+      type="button"
+      class="text-primary cursor-pointer bg-transparent border-none underline"
+      (click)="cancel()"
+    >
+      Cancel !
+    </button>
+  </div>
+</div>
+</div>
