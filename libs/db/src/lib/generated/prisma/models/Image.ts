@@ -52,6 +52,8 @@ export type ImageMinAggregateOutputType = {
   isPublic: boolean | null
   isDeleted: number | null
   isDeletedDT: Date | null
+  url: string | null
+  type: string | null
   filename: string | null
   originalName: string | null
   mimeType: string | null
@@ -85,6 +87,8 @@ export type ImageMaxAggregateOutputType = {
   isPublic: boolean | null
   isDeleted: number | null
   isDeletedDT: Date | null
+  url: string | null
+  type: string | null
   filename: string | null
   originalName: string | null
   mimeType: string | null
@@ -118,6 +122,8 @@ export type ImageCountAggregateOutputType = {
   isPublic: number
   isDeleted: number
   isDeletedDT: number
+  url: number
+  type: number
   filename: number
   originalName: number
   mimeType: number
@@ -173,6 +179,8 @@ export type ImageMinAggregateInputType = {
   isPublic?: true
   isDeleted?: true
   isDeletedDT?: true
+  url?: true
+  type?: true
   filename?: true
   originalName?: true
   mimeType?: true
@@ -206,6 +214,8 @@ export type ImageMaxAggregateInputType = {
   isPublic?: true
   isDeleted?: true
   isDeletedDT?: true
+  url?: true
+  type?: true
   filename?: true
   originalName?: true
   mimeType?: true
@@ -239,6 +249,8 @@ export type ImageCountAggregateInputType = {
   isPublic?: true
   isDeleted?: true
   isDeletedDT?: true
+  url?: true
+  type?: true
   filename?: true
   originalName?: true
   mimeType?: true
@@ -361,6 +373,8 @@ export type ImageGroupByOutputType = {
   isPublic: boolean
   isDeleted: number
   isDeletedDT: Date | null
+  url: string
+  type: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -419,6 +433,8 @@ export type ImageWhereInput = {
   isPublic?: Prisma.BoolFilter<"Image"> | boolean
   isDeleted?: Prisma.IntFilter<"Image"> | number
   isDeletedDT?: Prisma.DateTimeNullableFilter<"Image"> | Date | string | null
+  url?: Prisma.StringFilter<"Image"> | string
+  type?: Prisma.StringNullableFilter<"Image"> | string | null
   filename?: Prisma.StringFilter<"Image"> | string
   originalName?: Prisma.StringFilter<"Image"> | string
   mimeType?: Prisma.StringFilter<"Image"> | string
@@ -459,6 +475,8 @@ export type ImageOrderByWithRelationInput = {
   isPublic?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   isDeletedDT?: Prisma.SortOrderInput | Prisma.SortOrder
+  url?: Prisma.SortOrder
+  type?: Prisma.SortOrderInput | Prisma.SortOrder
   filename?: Prisma.SortOrder
   originalName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -502,6 +520,8 @@ export type ImageWhereUniqueInput = Prisma.AtLeast<{
   isPublic?: Prisma.BoolFilter<"Image"> | boolean
   isDeleted?: Prisma.IntFilter<"Image"> | number
   isDeletedDT?: Prisma.DateTimeNullableFilter<"Image"> | Date | string | null
+  url?: Prisma.StringFilter<"Image"> | string
+  type?: Prisma.StringNullableFilter<"Image"> | string | null
   filename?: Prisma.StringFilter<"Image"> | string
   originalName?: Prisma.StringFilter<"Image"> | string
   mimeType?: Prisma.StringFilter<"Image"> | string
@@ -542,6 +562,8 @@ export type ImageOrderByWithAggregationInput = {
   isPublic?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   isDeletedDT?: Prisma.SortOrderInput | Prisma.SortOrder
+  url?: Prisma.SortOrder
+  type?: Prisma.SortOrderInput | Prisma.SortOrder
   filename?: Prisma.SortOrder
   originalName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -585,6 +607,8 @@ export type ImageScalarWhereWithAggregatesInput = {
   isPublic?: Prisma.BoolWithAggregatesFilter<"Image"> | boolean
   isDeleted?: Prisma.IntWithAggregatesFilter<"Image"> | number
   isDeletedDT?: Prisma.DateTimeNullableWithAggregatesFilter<"Image"> | Date | string | null
+  url?: Prisma.StringWithAggregatesFilter<"Image"> | string
+  type?: Prisma.StringNullableWithAggregatesFilter<"Image"> | string | null
   filename?: Prisma.StringWithAggregatesFilter<"Image"> | string
   originalName?: Prisma.StringWithAggregatesFilter<"Image"> | string
   mimeType?: Prisma.StringWithAggregatesFilter<"Image"> | string
@@ -620,6 +644,8 @@ export type ImageCreateInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -655,6 +681,8 @@ export type ImageUncheckedCreateInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -690,6 +718,8 @@ export type ImageUpdateInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -725,6 +755,8 @@ export type ImageUncheckedUpdateInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -760,6 +792,8 @@ export type ImageCreateManyInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -795,6 +829,8 @@ export type ImageUpdateManyMutationInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -825,6 +861,8 @@ export type ImageUncheckedUpdateManyInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -870,6 +908,8 @@ export type ImageCountOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   isDeletedDT?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   filename?: Prisma.SortOrder
   originalName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -914,6 +954,8 @@ export type ImageMaxOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   isDeletedDT?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   filename?: Prisma.SortOrder
   originalName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -947,6 +989,8 @@ export type ImageMinOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   isDeletedDT?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   filename?: Prisma.SortOrder
   originalName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -1208,6 +1252,8 @@ export type ImageCreateWithoutOrgInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1242,6 +1288,8 @@ export type ImageUncheckedCreateWithoutOrgInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1305,6 +1353,8 @@ export type ImageScalarWhereInput = {
   isPublic?: Prisma.BoolFilter<"Image"> | boolean
   isDeleted?: Prisma.IntFilter<"Image"> | number
   isDeletedDT?: Prisma.DateTimeNullableFilter<"Image"> | Date | string | null
+  url?: Prisma.StringFilter<"Image"> | string
+  type?: Prisma.StringNullableFilter<"Image"> | string | null
   filename?: Prisma.StringFilter<"Image"> | string
   originalName?: Prisma.StringFilter<"Image"> | string
   mimeType?: Prisma.StringFilter<"Image"> | string
@@ -1340,6 +1390,8 @@ export type ImageCreateWithoutUploadedByInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1374,6 +1426,8 @@ export type ImageUncheckedCreateWithoutUploadedByInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1418,6 +1472,8 @@ export type ImageCreateWithoutProfileUserInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1452,6 +1508,8 @@ export type ImageUncheckedCreateWithoutProfileUserInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1528,6 +1586,8 @@ export type ImageCreateWithoutPostInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1562,6 +1622,8 @@ export type ImageUncheckedCreateWithoutPostInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1622,6 +1684,8 @@ export type ImageCreateWithoutStoryInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1656,6 +1720,8 @@ export type ImageUncheckedCreateWithoutStoryInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1716,6 +1782,8 @@ export type ImageCreateManyOrgInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1750,6 +1818,8 @@ export type ImageUpdateWithoutOrgInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1784,6 +1854,8 @@ export type ImageUncheckedUpdateWithoutOrgInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1818,6 +1890,8 @@ export type ImageUncheckedUpdateManyWithoutOrgInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1852,6 +1926,8 @@ export type ImageCreateManyUploadedByInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1886,6 +1962,8 @@ export type ImageCreateManyProfileUserInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -1920,6 +1998,8 @@ export type ImageUpdateWithoutUploadedByInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1954,6 +2034,8 @@ export type ImageUncheckedUpdateWithoutUploadedByInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1988,6 +2070,8 @@ export type ImageUncheckedUpdateManyWithoutUploadedByInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2022,6 +2106,8 @@ export type ImageUpdateWithoutProfileUserInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2056,6 +2142,8 @@ export type ImageUncheckedUpdateWithoutProfileUserInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2090,6 +2178,8 @@ export type ImageUncheckedUpdateManyWithoutProfileUserInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2124,6 +2214,8 @@ export type ImageCreateManyPostInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -2158,6 +2250,8 @@ export type ImageUpdateWithoutPostInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2192,6 +2286,8 @@ export type ImageUncheckedUpdateWithoutPostInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2226,6 +2322,8 @@ export type ImageUncheckedUpdateManyWithoutPostInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2260,6 +2358,8 @@ export type ImageCreateManyStoryInput = {
   isPublic?: boolean
   isDeleted?: number
   isDeletedDT?: Date | string | null
+  url: string
+  type?: string | null
   filename: string
   originalName: string
   mimeType: string
@@ -2294,6 +2394,8 @@ export type ImageUpdateWithoutStoryInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2328,6 +2430,8 @@ export type ImageUncheckedUpdateWithoutStoryInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2362,6 +2466,8 @@ export type ImageUncheckedUpdateManyWithoutStoryInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.IntFieldUpdateOperationsInput | number
   isDeletedDT?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2398,6 +2504,8 @@ export type ImageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   isPublic?: boolean
   isDeleted?: boolean
   isDeletedDT?: boolean
+  url?: boolean
+  type?: boolean
   filename?: boolean
   originalName?: boolean
   mimeType?: boolean
@@ -2438,6 +2546,8 @@ export type ImageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   isPublic?: boolean
   isDeleted?: boolean
   isDeletedDT?: boolean
+  url?: boolean
+  type?: boolean
   filename?: boolean
   originalName?: boolean
   mimeType?: boolean
@@ -2478,6 +2588,8 @@ export type ImageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   isPublic?: boolean
   isDeleted?: boolean
   isDeletedDT?: boolean
+  url?: boolean
+  type?: boolean
   filename?: boolean
   originalName?: boolean
   mimeType?: boolean
@@ -2518,6 +2630,8 @@ export type ImageSelectScalar = {
   isPublic?: boolean
   isDeleted?: boolean
   isDeletedDT?: boolean
+  url?: boolean
+  type?: boolean
   filename?: boolean
   originalName?: boolean
   mimeType?: boolean
@@ -2544,7 +2658,7 @@ export type ImageSelectScalar = {
   storyId?: boolean
 }
 
-export type ImageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numSeq" | "createdAt" | "updatedAt" | "published" | "isPublic" | "isDeleted" | "isDeletedDT" | "filename" | "originalName" | "mimeType" | "fileSize" | "width" | "height" | "storageType" | "storagePath" | "storageUrl" | "bucketName" | "isProcessed" | "thumbnailUrl" | "variants" | "tags" | "altText" | "description" | "uploadedById" | "associatedId" | "associationType" | "sequence" | "orgId" | "postId" | "profileUserId" | "storyId", ExtArgs["result"]["image"]>
+export type ImageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "numSeq" | "createdAt" | "updatedAt" | "published" | "isPublic" | "isDeleted" | "isDeletedDT" | "url" | "type" | "filename" | "originalName" | "mimeType" | "fileSize" | "width" | "height" | "storageType" | "storagePath" | "storageUrl" | "bucketName" | "isProcessed" | "thumbnailUrl" | "variants" | "tags" | "altText" | "description" | "uploadedById" | "associatedId" | "associationType" | "sequence" | "orgId" | "postId" | "profileUserId" | "storyId", ExtArgs["result"]["image"]>
 export type ImageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   org?: boolean | Prisma.Image$orgArgs<ExtArgs>
@@ -2585,6 +2699,8 @@ export type $ImagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     isPublic: boolean
     isDeleted: number
     isDeletedDT: Date | null
+    url: string
+    type: string | null
     filename: string
     originalName: string
     mimeType: string
@@ -3045,6 +3161,8 @@ export interface ImageFieldRefs {
   readonly isPublic: Prisma.FieldRef<"Image", 'Boolean'>
   readonly isDeleted: Prisma.FieldRef<"Image", 'Int'>
   readonly isDeletedDT: Prisma.FieldRef<"Image", 'DateTime'>
+  readonly url: Prisma.FieldRef<"Image", 'String'>
+  readonly type: Prisma.FieldRef<"Image", 'String'>
   readonly filename: Prisma.FieldRef<"Image", 'String'>
   readonly originalName: Prisma.FieldRef<"Image", 'String'>
   readonly mimeType: Prisma.FieldRef<"Image", 'String'>

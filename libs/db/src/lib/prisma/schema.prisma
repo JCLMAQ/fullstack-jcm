@@ -632,7 +632,7 @@ model Image {
   uploadedById  String
 
   // Generic association system
-  associated_Id  String?   // ID of associated entity (Post, User, Organization, etc.)
+  associatedId  String?   // ID of associated entity (Post, User, Organization, etc.)
   associationType String? // Type of associated entity ("post", "user", "organization", etc.)
   sequence      Int       @default(0) // Order in a collection
 

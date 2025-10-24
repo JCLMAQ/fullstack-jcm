@@ -42,11 +42,19 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/playwright:playwright": {
+      "cache": false,
+      "inputs": ["default", "^production"],
+      "options": {
+        "skipServe": false
+      }
     }
   },
   "plugins": [
     {
-      "plugin": "@nx/playwright/plugin",
+     "plugin": "@nx/playwright/plugin",
+      "exclude": ["apps/frontend/app-jcm-e2e/**/*"],
       "options": {
         "targetName": "e2e"
       }
