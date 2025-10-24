@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
-// import { AuthService } from '@fe/services/auth-service/auth.service';
+import { AuthService } from '@fe/auth';
 import { ApiConfig, AvatarBase64 } from '@fe/services';
 import { UserAvatar } from '@fe/user-avatar';
 

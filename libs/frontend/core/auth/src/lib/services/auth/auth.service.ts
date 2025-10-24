@@ -3,7 +3,7 @@ import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { jwtDecode } from "jwt-decode";
 import { firstValueFrom } from "rxjs";
-import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "./auth.model";
+import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../../models/auth.model";
 
 
 const USER_STORAGE_KEY = 'user';
@@ -65,8 +65,8 @@ export class AuthService {
       password});
     const response = await firstValueFrom(login$);
 
-    this.#authTokenSignal.set(response.access_token);
-    localStorage.setItem("authJwtToken", response.access_token);
+    this.#authTokenSignal.set(response.accessToken);
+    localStorage.setItem("authJwtToken", response.accessToken);
 
     // console.log("User logged: ", response)
 
@@ -81,20 +81,36 @@ export class AuthService {
 
   async register(email:string, password:string, confirmPassword:string): Promise<IRegisterResponse | Error> {
 
-    const pathUrl = "api/auths/auth/registerwithpwd";
-    // const register$ = this.httpClient.post<User>(`${environment.apiRoot}/register`, {
-    const register$ = this.httpClient.post<IRegisterResponse>(`${pathUrl}`, {
+        // 🆕 MIGRATION VERS ENDPOINT IAM
+    // ANCIEN: const pathUrl = "api/auths/auth/registerwithpwd";
+    const pathUrl = "api/authentication/register-extended";
+
+
+   const payload: {
+      email: string;
+      password: string;
+      verifyPassword: string;
+      Roles?: string[];
+      Language?: string;
+      lastName?: string;
+      firstName?: string;
+      nickName?: string;
+      Gender?: string;
+    } = {
       email,
       password,
       verifyPassword: confirmPassword,
-      lastName: '',
-      firstName: '',
-      nickName: '',
-      Gender: 'UNKNOWN',
-      Roles: "GUEST",
-      // title: 'Sir',
-      Language: "fr"
-    });
+      // Roles: ["GUEST"],
+      // Language: "fr"
+    };
+
+   // N'ajouter les champs optionnels que s'ils ont des valeurs valides
+    // (évite les erreurs de validation sur chaînes vides)
+
+    console.log("Registering User Payload: ", payload);
+
+
+    const register$ = this.httpClient.post<IRegisterResponse>(`${pathUrl}`, payload);
     const response = await firstValueFrom(register$);
 
     console.log("Registering User Response: ", response)
@@ -114,6 +130,46 @@ export class AuthService {
     // await this.router.navigateByUrl('/login');
   }
 
+// Todo Update user photo both backend and frontend signal : chifeter vezrs un service spécifique ?
+ async updateUserPhoto(photoUrl: string): Promise<{success: boolean, message: string, photoUrl?: string}> {
+    try {
+      console.log('🔐 Token d\'authentification:', this.authToken());
+      console.log('👤 Utilisateur actuel:', this.user());
+      console.log('📤 Données envoyées:', { photoUrl });
+
+      const response = await firstValueFrom(
+        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>('http://localhost:3100/api/authentication/update-photo', {
+          photoUrl
+        })
+      );
+
+      console.log('✅ Réponse complète du serveur:', response);
+
+      if (response.success && response.photoUrl) {
+        // Mettre à jour l'utilisateur local
+        const currentUser = this.user();
+        if (currentUser) {
+          const updatedUser = { ...currentUser, photoUrl: response.photoUrl };
+          this.#userSignal.set(updatedUser);
+          console.log('🔄 Utilisateur mis à jour localement:', updatedUser);
+        }
+      }
+
+      return response;
+    } catch (error) {
+      console.error('💥 Erreur détaillée lors de la mise à jour de la photo:', error);
+      console.error('💥 Type d\'erreur:', typeof error);
+      console.error('💥 Message d\'erreur:', (error as any)?.message);
+      console.error('💥 Status de l\'erreur:', (error as any)?.status);
+      console.error('💥 Error object complet:', error);
+
+      return {
+        success: false,
+        message: `Failed to update photo: ${(error as any)?.message || 'Unknown error'}`
+      };
+    }
+  }
+
   async fetchUser(): Promise<IUserLogged | undefined | null> {
 
     //  get user data from backend with authToken
@@ -122,50 +178,72 @@ export class AuthService {
     if (authToken) {
       const decodedJwt: IJwt = jwtDecode(authToken);
       console.log("Decoded JWT: ", decodedJwt);
-      const emailToCheck = decodedJwt.username; // username = email
+      const emailToCheck = decodedJwt.email; // username = email
       if (emailToCheck) {
 
-        // const response = resource({
-        //   request: () => ({id: emailToCheck}),
-        //   loader: ({request}) => fetch(apiUrl + request.id).then(response => response.json())
-        // });
+        try {
+          const response = await firstValueFrom(
+            this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/auths/auth/loggedUser/${emailToCheck}`)
+          //    this.httpClient.get<{user: IUserLogged, fullName: string}>('http://localhost:3100/api/authentication/profile')
 
+          );
+          if ('success' in response) {
+            console.error(response.message);
+            return null;
+          }
 
-        //     console.log(response.status()); // Prints: 2 (which means "Loading")
+          const user: IUserLogged = {
+            email: response.user.email || '',
+            lastName: response.user.lastName || null,
+            firstName: response.user.firstName || null,
+            nickName: response.user.nickName || null,
+            title: response.user.title || null,
+            Gender: response.user.Gender || null,
+            Roles: response.user.Roles || [],
+            Language: response.user.Language || null,
+            fullName: response.fullName || null,
+            photoUrl: response.user.photoUrl || ''  // ✅ Récupère la vraie photoUrl depuis la DB
+          };
 
-        //     // After the fetch resolves
+          return user;
+        } catch (error) {
+          console.error("Error fetching user data: ", error);
 
-        //     console.log(response.status()); // Prints: 4 (which means "Resolved")
-        //     console.log(response.value()); // Prints: { "id": 1 , ... }
+          // Fallback : utiliser les infos du JWT si l'API échoue
+          const decodedJwt: IJwt = jwtDecode(authToken);
+          console.log("Fallback - Decoded JWT: ", decodedJwt);
 
-      const response = await firstValueFrom(
-        this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/auths/auth/loggedUser/${emailToCheck}`)
-      );
-      if ('success' in response) {
-        console.error(response.message);
-        return null;
-      }
-      // const { user, fullName } = response;
-      // if (user) {
-      //   return {
-      //     email: user.email,
-      //     lastName: user.lastName,
-      //     firstName: user.firstName,
-      //     nickName: user.nickName,
-      //     fullName,
-      //     title: user.title,
-      //     Gender: user.Gender,
-      //     Roles: user.Roles,
-      //     Language: user.Language,
-      //     photoUrl: user.photoUrl ?? ''
-      //   };
-      // }
-      return response.user;
-      // return response.value();
+          const user: IUserLogged = {
+            email: decodedJwt.email || '',
+            lastName: null,
+            firstName: null,
+            nickName: null,
+            title: null,
+            Gender: null,
+            Roles: decodedJwt.role || [],
+            Language: null,
+            fullName: null,
+            photoUrl: ''  // Sera remplacé par person-placeholder.png dans le template
+          };
 
+          return user;
+        }
       }
     }
     return null;
+  }
+
+// 🆕 Méthode pour actualiser le profil utilisateur et mettre à jour le signal
+  async refreshUserProfile(): Promise<void> {
+    try {
+      const updatedUser = await this.fetchUser();
+      if (updatedUser) {
+        this.#userSignal.set(updatedUser);
+        console.log('🔄 Profil utilisateur actualisé:', updatedUser);
+      }
+    } catch (error) {
+      console.error('⚠️ Erreur lors de l\'actualisation du profil utilisateur:', error);
+    }
   }
 
   isAuthenticated() {

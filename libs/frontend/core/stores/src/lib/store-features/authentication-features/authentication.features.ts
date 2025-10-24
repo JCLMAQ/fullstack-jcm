@@ -36,9 +36,11 @@ export function withAppAuthFeatures(): SignalStoreFeature {
           const loginResponse = await store._authService.login(email, password);
           console.log('user after login: ', loginResponse);
 
+          const user = store._authService.user();
+
           patchState(store, {
-            user: loginResponse.user,
-            authToken: loginResponse.access_token,
+            user: user,
+            authToken: loginResponse.accessToken,
           });
 
           store._router.navigate(['/dashboard']);

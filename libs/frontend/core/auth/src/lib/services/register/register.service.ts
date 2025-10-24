@@ -10,6 +10,7 @@ export class RegisterService {
 
   private httpClient = inject(HttpClient)
 
+  // TODO : user httpRessource instead of httpClient ? avoid toPromise
   register(body: any): Promise<any> {
     return new Promise((resolve, reject) => {
     this.userRegister(body)
@@ -24,6 +25,8 @@ export class RegisterService {
   }
 
   userRegister(user: User): Observable<User>{
-    return this.httpClient.post<User>('api/auths/auth/registerwithpwd', user)
+    // 🆕 MIGRATION VERS ENDPOINT IAM
+    // ANCIEN: return this.httpClient.post<User>('api/auths/auth/registerwithpwd', user)
+    return this.httpClient.post<User>('api/authentication/register-extended', user)
   }
 }
