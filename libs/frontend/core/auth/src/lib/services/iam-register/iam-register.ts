@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { User } from '@db/prisma';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 /**
  * 🆕 SERVICE D'INSCRIPTION IAM - Migration AUTHS → IAM
  *
@@ -15,16 +15,13 @@ export class IamRegisterService {
 
   httpClient = inject(HttpClient);
 
-  register(body: User): Promise<User> {
-    return new Promise((resolve, reject) => {
-      this.userRegister(body)
-        .toPromise()
-        .then(res => {
-          resolve(res);
-        }).catch((error) => {
-          reject(error.message);
-        });
-    });
+  async register(body: User): Promise<User> {
+    try {
+      const result = await firstValueFrom(this.userRegister(body));
+      return result;
+    } catch (error: any) {
+      throw new Error(error.message || 'Registration failed');
+    }
   }
 
   /**
