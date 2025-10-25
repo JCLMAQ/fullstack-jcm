@@ -57,8 +57,8 @@ export class AuthService {
 
   async login(email:string, password:string): Promise<ILoginResponse> {
 
-    // const pathUrl = environment.apiRoot + "api/auths/auth/loginwithpwd";
-    const pathUrl = "api/auths/auth/loginwithpwd";
+  // const pathUrl = environment.apiRoot + "api/authentication/sign-in";
+  const pathUrl = "api/authentication/sign-in";
     const login$ = this.httpClient.post<ILoginResponse>(`${pathUrl}`, {
       // const login$ = this.httpClient.post<User>(`${environment.apiRoot}/login`, {
       email,
@@ -127,7 +127,7 @@ export class AuthService {
 
     this.logoutAsUserOrAdmin();
 
-    // await this.router.navigateByUrl('/login');
+    // await this.router.navigateByUrl('/auth/login');
   }
 
 // Todo Update user photo both backend and frontend signal : chifeter vezrs un service spécifique ?

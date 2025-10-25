@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
+import { AppStore } from '@fe/stores';
 
 @Component({
   selector: 'lib-login',
@@ -20,8 +20,7 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrl: './login.scss',
 })
 export class Login {
-
-  authService = inject(AuthService);
+  appStore = inject(AppStore);
   router = inject(Router);
 
   email = signal('user1@test.be');
@@ -33,14 +32,11 @@ export class Login {
     this.router.navigate(['auth/register']);
   }
 
-  login() {
-    this.authService.login(this.email(), this.password());
+  async login() {
+    await this.appStore['login'](this.email(), this.password());
   }
 
   cancel() {
     this.router.navigate(['/pages/home']);
   }
-
-
-
 }

@@ -7,11 +7,11 @@ class="flex gap-2 min-h-screen items-center justify-center bg-background"
   <h1 class="text-2xl mb-2 text-on-surface">Login</h1>
   <div class="flex gap-1 mb-8 text-sm text-on-surface">
     <span>Don't have an account?</span>
-    <a class="text-primary cursor-pointer" (click)="register()">Sign up!</a>
+  <a class="text-primary cursor-pointer" tabindex="0" (click)="register()" (keyup.enter)="register()">Sign up!</a>
   </div>
   <form
     class="flex flex-col gap-5"
-    (ngSubmit)="appStore['login'](email(), password())"
+    (ngSubmit)="login()"
   >
     <mat-form-field class="w-full">
       <mat-label>Email</mat-label>
@@ -62,7 +62,7 @@ class="flex gap-2 min-h-screen items-center justify-center bg-background"
   <div class="flex gap-3 mb-8 text-sm text-on-surface">
     <br><br>
     <span>Want to Cancel ?</span>
-    <a class="text-primary cursor-pointer" (click)="cancel()">Cancel !</a>
+  <a class="text-primary cursor-pointer" tabindex="0" (click)="cancel()" (keyup.enter)="cancel()">Cancel !</a>
   </div>
 </div>
 

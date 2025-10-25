@@ -86,7 +86,7 @@ export function withAppAuthFeatures(): SignalStoreFeature {
           });
           // Optional: track success
 
-          store._router.navigate(['/login']);
+          store._router.navigate(['/auth/login']);
         } catch (error) {
           store._snackbar.open(
             'Invalid email, password or confirm password',
