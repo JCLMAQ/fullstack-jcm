@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { AppStore } from '@fe/stores';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'lib-login',
@@ -21,7 +21,7 @@ import { AppStore } from '@fe/stores';
 })
 export class Login {
 
-  appStore = inject(AppStore);
+  authService = inject(AuthService);
   router = inject(Router);
 
   email = signal('user1@test.be');
@@ -30,11 +30,15 @@ export class Login {
   hidePassword = signal(true);
 
   register() {
-    this.router.navigate(['register']);
+    this.router.navigate(['auth/register']);
+  }
+
+  login() {
+    this.authService.login(this.email(), this.password());
   }
 
   cancel() {
-    this.router.navigate(['home']);
+    this.router.navigate(['/pages/home']);
   }
 
 

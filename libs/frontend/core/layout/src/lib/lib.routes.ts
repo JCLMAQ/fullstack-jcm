@@ -16,6 +16,10 @@ children: [
         loadChildren: () => import('@fe/pages').then((m) => m.pagesRoutes),
       },
       {
+        path: 'auth',
+        loadChildren: () => import('@fe/auth').then((m) => m.authRoutes),
+      },
+      {
         path: 'users',
         loadChildren: () => import('@fe/user').then((m) => m.userRoutes),
       },

@@ -61,8 +61,8 @@ export class Header {
     }
   }
 
-    login() {
-    this.router.navigate(['/login']);
+  login() {
+    this.router.navigate(['/auth/login']);
   }
 
   navigate(route: string) {

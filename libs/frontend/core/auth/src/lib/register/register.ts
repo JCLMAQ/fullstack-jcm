@@ -242,11 +242,11 @@ export class Register {
   }
 
   login() {
-    this.router.navigate(['login']);
+    this.router.navigate(['auth/login']);
   }
 
   cancel() {
-    this.router.navigate(['home']);
+  this.router.navigate(['/pages/home']);
   }
 
   // Méthodes utilitaires pour réinitialiser les champs
