@@ -1,4 +1,4 @@
-export * from './lib/auth/auth';
+
 export * from './lib/lib.routes';
 export * from './lib/models/auth.model';
 export * from './lib/services/auth/auth.service';

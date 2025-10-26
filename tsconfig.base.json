@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      // Paths for Backend
       "@be/changestracking": [
         "libs/backend/utilities/changestracking/src/index.ts"
       ],
@@ -32,12 +31,8 @@
       "@be/users": ["libs/backend/users/src/index.ts"],
       "@be/common": ["libs/backend/common/src/index.ts"],
       "@be/jwtconfig": ["libs/backend/common/src/lib/config/jwt.config"],
-
-      // Paths for Prisma and Database
       "@db/prisma": ["libs/db/src/index.ts"],
       "@db/prisma-client": ["libs/backend/prisma-client/src/index.ts"],
-
-      // Paths for Frontend
       "@fe/layout": ["libs/frontend/core/layout/src/index.ts"],
       "@fe/auth": ["libs/frontend/core/auth/src/index.ts"],
       "@fe/pages": ["libs/frontend/core/pages/src/index.ts"],
@@ -66,11 +61,10 @@
       "@fe/user-avatar": [
         "libs/frontend/shared/components/user-avatar/src/index.ts"
       ],
-
       "@fe/user-avatar-editor": [
         "libs/frontend/shared/components/user-avatar-editor/src/index.ts"
       ],
-
+      "@fe/shared": ["libs/frontend/core/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

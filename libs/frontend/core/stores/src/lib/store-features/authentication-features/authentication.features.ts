@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from '@fe/auth';
+import { AuthService } from '@fe/shared';
 import {
   patchState,
   SignalStoreFeature,
