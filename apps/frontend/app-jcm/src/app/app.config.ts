@@ -9,7 +9,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { AUTH_SERVICE_TOKEN, DICTIONARIES_TOKEN, ENVIRONMENT_TOKEN, IAM_AUTH_TOKEN, MENU_ITEMS_TOKEN } from '@fe/tokens';
+import { DICTIONARIES_TOKEN, ENVIRONMENT_TOKEN, IAM_AUTH_TOKEN, MENU_ITEMS_TOKEN } from '@fe/tokens';
 import { appRoutes } from './app.routes';
 import { DICTIONARIES } from './data/dictionaries';
 import { APP_MENU_ITEMS } from './data/menu-items';
@@ -17,7 +17,7 @@ import { APP_MENU_ITEMS } from './data/menu-items';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 // import { provideAnimations } from '@angular/platform-browser/animations';
 // import { AppStore } from '@fe/stores';
-import { AuthService, IamAuth } from '@fe/shared';
+import { IamAuth } from '@fe/shared';
 import { ENVIRONMENT_DATA } from '../../environments/environment';
 
 export const appConfig: ApplicationConfig = {
@@ -54,7 +54,6 @@ export const appConfig: ApplicationConfig = {
   // Provide the environment configuration for the API URL and other settings
   { provide: ENVIRONMENT_TOKEN, useValue: ENVIRONMENT_DATA },
   // Provide the Authentication Service
-  { provide: AUTH_SERVICE_TOKEN, useClass: AuthService },
   { provide: IAM_AUTH_TOKEN, useClass: IamAuth },
   {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

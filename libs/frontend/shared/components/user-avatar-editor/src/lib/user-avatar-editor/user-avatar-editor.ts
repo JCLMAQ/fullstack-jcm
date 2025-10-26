@@ -10,7 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ApiConfig, AvatarBase64 } from '@fe/services';
-import { AuthService } from '@fe/shared';
+import { IamAuth } from '@fe/shared';
 import { UserAvatar } from '@fe/user-avatar';
 
 @Component({
@@ -32,7 +32,7 @@ import { UserAvatar } from '@fe/user-avatar';
 })
 export class UserAvatarEditor {
 
-  authService = inject(AuthService);
+  authService = inject(IamAuth);
   snackbar = inject(MatSnackBar);
   dialogRef = inject(MatDialogRef<UserAvatarEditor>);
   avatarBase64Service = inject(AvatarBase64);

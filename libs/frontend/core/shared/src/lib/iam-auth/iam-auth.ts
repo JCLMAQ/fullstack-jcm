@@ -140,34 +140,109 @@ export class IamAuth {
     this.logoutAsUserOrAdmin();
   }
 
+
+// Todo Update user photo both backend and frontend signal : chifeter vezrs un service spécifique ?
+ async updateUserPhoto(photoUrl: string): Promise<{success: boolean, message: string, photoUrl?: string}> {
+    try {
+      console.log('🔐 Token d\'authentification:', this.authToken());
+      console.log('👤 Utilisateur actuel:', this.user());
+      console.log('📤 Données envoyées:', { photoUrl });
+
+      const response = await firstValueFrom(
+        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>('http://localhost:3100/api/authentication/update-photo', {
+          photoUrl
+        })
+      );
+
+      console.log('✅ Réponse complète du serveur:', response);
+
+      if (response.success && response.photoUrl) {
+        // Mettre à jour l'utilisateur local
+        const currentUser = this.user();
+        if (currentUser) {
+          const updatedUser = { ...currentUser, photoUrl: response.photoUrl };
+          this.#userSignal.set(updatedUser);
+          console.log('🔄 Utilisateur mis à jour localement:', updatedUser);
+        }
+      }
+
+      return response;
+    } catch (error) {
+      console.error('💥 Erreur détaillée lors de la mise à jour de la photo:', error);
+      console.error('💥 Type d\'erreur:', typeof error);
+      console.error('💥 Message d\'erreur:', (error as any)?.message);
+      console.error('💥 Status de l\'erreur:', (error as any)?.status);
+      console.error('💥 Error object complet:', error);
+
+      return {
+        success: false,
+        message: `Failed to update photo: ${(error as any)?.message || 'Unknown error'}`
+      };
+    }
+  }
+
   /**
    * 👤 FETCH USER avec nouvel endpoint IAM
    * AUTHS: GET /api/auths/auth/loggedUser/:email
    * IAM:   GET /api/authentication/user/:email ✅
    */
-  async fetchUser(): Promise<IUserLogged | undefined | null> {
+    async fetchUser(): Promise<IUserLogged | undefined | null> {
+
+    //  get user data from backend with authToken
+    // const apiUrl = "api/auths/auth/loggedUser/";
     const authToken = this.authToken();
     if (authToken) {
       const decodedJwt: IJwt = jwtDecode(authToken);
-      console.log("Decoded JWT (IAM): ", decodedJwt);
+      console.log("Decoded JWT: ", decodedJwt);
       const emailToCheck = decodedJwt.email; // username = email
-
       if (emailToCheck) {
-        try {
-          // 🆕 Utilisation du nouvel endpoint IAM
-          const response = await firstValueFrom(
-            this.httpClient.get<{ user: IUserLogged, fullName: string } | { success: boolean, message: string}>(`api/authentication/user/${emailToCheck}`)
-          );
 
+        try {
+          const response = await firstValueFrom(
+            this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/auths/auth/loggedUser/${emailToCheck}`)
+          //    this.httpClient.get<{user: IUserLogged, fullName: string}>('http://localhost:3100/api/authentication/profile')
+
+          );
           if ('success' in response) {
-            console.error('Error fetching user (IAM):', response.message);
+            console.error(response.message);
             return null;
           }
 
-          return response.user;
+          const user: IUserLogged = {
+            email: response.user.email || '',
+            lastName: response.user.lastName || null,
+            firstName: response.user.firstName || null,
+            nickName: response.user.nickName || null,
+            title: response.user.title || null,
+            Gender: response.user.Gender || null,
+            Roles: response.user.Roles || [],
+            Language: response.user.Language || null,
+            fullName: response.fullName || null,
+            photoUrl: response.user.photoUrl || ''  // ✅ Récupère la vraie photoUrl depuis la DB
+          };
+
+          return user;
         } catch (error) {
-          console.error('Error fetching user (IAM):', error);
-          return null;
+          console.error("Error fetching user data: ", error);
+
+          // Fallback : utiliser les infos du JWT si l'API échoue
+          const decodedJwt: IJwt = jwtDecode(authToken);
+          console.log("Fallback - Decoded JWT: ", decodedJwt);
+
+          const user: IUserLogged = {
+            email: decodedJwt.email || '',
+            lastName: null,
+            firstName: null,
+            nickName: null,
+            title: null,
+            Gender: null,
+            Roles: decodedJwt.role || [],
+            Language: null,
+            fullName: null,
+            photoUrl: ''  // Sera remplacé par person-placeholder.png dans le template
+          };
+
+          return user;
         }
       }
     }
@@ -192,6 +267,20 @@ export class IamAuth {
       return false;
     }
   }
+
+// 🆕 Méthode pour actualiser le profil utilisateur et mettre à jour le signal
+  async refreshUserProfile(): Promise<void> {
+    try {
+      const updatedUser = await this.fetchUser();
+      if (updatedUser) {
+        this.#userSignal.set(updatedUser);
+        console.log('🔄 Profil utilisateur actualisé:', updatedUser);
+      }
+    } catch (error) {
+      console.error('⚠️ Erreur lors de l\'actualisation du profil utilisateur:', error);
+    }
+  }
+
 
   // === MÉTHODES COMPATIBILITÉ (identiques à auth.service.ts) ===
 
