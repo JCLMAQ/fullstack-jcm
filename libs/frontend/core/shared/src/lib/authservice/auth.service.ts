@@ -3,7 +3,7 @@ import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { jwtDecode } from "jwt-decode";
 import { firstValueFrom } from "rxjs";
-import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../authservice/models/auth.model";
+import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from "../models/auth.model";
 
 
 const USER_STORAGE_KEY = 'user';

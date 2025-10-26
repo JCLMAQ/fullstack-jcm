@@ -5,5 +5,6 @@ export * from './lib/services/responsive.service';
 export * from './lib/tokens/authservices.token';
 export * from './lib/tokens/dictionaries.token';
 export * from './lib/tokens/environement.token';
+export * from './lib/tokens/iam-auth.token';
 export * from './lib/tokens/menu.token';
 

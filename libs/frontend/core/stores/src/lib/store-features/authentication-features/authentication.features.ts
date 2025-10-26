@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from '@fe/shared';
+import { IamAuth } from '@fe/shared';
 import {
   patchState,
   SignalStoreFeature,
@@ -17,7 +17,7 @@ export function withAppAuthFeatures(): SignalStoreFeature {
   return signalStoreFeature(
     withState(initialAppSlice),
     withProps(() => ({
-      _authService: inject(AuthService),
+      _authService: inject(IamAuth),
       _router: inject(Router),
       _snackbar: inject(MatSnackBar),
     })),

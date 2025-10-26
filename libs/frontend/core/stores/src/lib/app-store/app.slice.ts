@@ -1,4 +1,4 @@
-import { IUserLogged } from '@fe/auth';
+import { IUserLogged } from '@fe/shared';
 
 export type AppSlice = {
   readonly user: IUserLogged | undefined;
