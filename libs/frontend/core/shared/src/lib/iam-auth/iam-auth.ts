@@ -86,10 +86,10 @@ export class IamAuth {
     localStorage.setItem("authJwtToken", response.accessToken);
 
     const userLogged = await this.fetchUser();
+    console.log("User logged in (IAM): ", userLogged);
     if (userLogged) {
       this.#userSignal.set(userLogged);
     }
-
     this.loginAsUser();
     return response;
   }
@@ -190,65 +190,68 @@ export class IamAuth {
    * IAM:   GET /api/authentication/user/:email ✅
    */
     async fetchUser(): Promise<IUserLogged | undefined | null> {
+      const pathUrl = "api/authentication/user";
+      //  get user data from backend with authToken
+      // const apiUrl = "api/auths/auth/loggedUser/";
+      const authToken = this.authToken();
+      if (authToken) {
+        const decodedJwt: IJwt = jwtDecode(authToken);
+        console.log("Decoded JWT: ", decodedJwt);
+        const emailToCheck = decodedJwt.email; // username = email
+        if (emailToCheck) {
 
-    //  get user data from backend with authToken
-    // const apiUrl = "api/auths/auth/loggedUser/";
-    const authToken = this.authToken();
-    if (authToken) {
-      const decodedJwt: IJwt = jwtDecode(authToken);
-      console.log("Decoded JWT: ", decodedJwt);
-      const emailToCheck = decodedJwt.email; // username = email
-      if (emailToCheck) {
+          try {
+            const response = await firstValueFrom(
+              // this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`${pathUrl}/${emailToCheck}`)
+               this.httpClient.get<{user: IUserLogged, fullName: string}>('api/authentication/profile')
 
-        try {
-          const response = await firstValueFrom(
-            this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`api/auths/auth/loggedUser/${emailToCheck}`)
-          //    this.httpClient.get<{user: IUserLogged, fullName: string}>('http://localhost:3100/api/authentication/profile')
+            );
+            console.log("Profil récupéré depuis l'API:", response);
+            if ('success' in response) {
+              // console.error(response.message);
+              return null;
+            }
 
-          );
-          if ('success' in response) {
-            console.error(response.message);
-            return null;
+            const user: IUserLogged = {
+              email: response.user.email || '',
+              lastName: response.user.lastName || null,
+              firstName: response.user.firstName || null,
+              nickName: response.user.nickName || null,
+              title: response.user.title || null,
+              Gender: response.user.Gender || null,
+              Roles: response.user.Roles || [],
+              Language: response.user.Language || null,
+              fullName: response.fullName || null,
+              photoUrl: response.user.photoUrl || ''  // ✅ Récupère la vraie photoUrl depuis la DB
+            };
+
+            return user;
+          } catch (error) {
+
+            console.error("Error fetching user data: ", error);
+
+            // Fallback : utiliser les infos du JWT si l'API échoue
+            const decodedJwt: IJwt = jwtDecode(authToken);
+            console.log("Fallback - Decoded JWT: ", decodedJwt);
+
+            const user: IUserLogged = {
+              email: decodedJwt.email || '',
+              lastName: null,
+              firstName: null,
+              nickName: null,
+              title: null,
+              Gender: null,
+              Roles: decodedJwt.role || [],
+              Language: null,
+              fullName: null,
+              photoUrl: ''  // Sera remplacé par person-placeholder.png dans le template
+            };
+
+            return user;
           }
-
-          const user: IUserLogged = {
-            email: response.user.email || '',
-            lastName: response.user.lastName || null,
-            firstName: response.user.firstName || null,
-            nickName: response.user.nickName || null,
-            title: response.user.title || null,
-            Gender: response.user.Gender || null,
-            Roles: response.user.Roles || [],
-            Language: response.user.Language || null,
-            fullName: response.fullName || null,
-            photoUrl: response.user.photoUrl || ''  // ✅ Récupère la vraie photoUrl depuis la DB
-          };
-
-          return user;
-        } catch (error) {
-          console.error("Error fetching user data: ", error);
-
-          // Fallback : utiliser les infos du JWT si l'API échoue
-          const decodedJwt: IJwt = jwtDecode(authToken);
-          console.log("Fallback - Decoded JWT: ", decodedJwt);
-
-          const user: IUserLogged = {
-            email: decodedJwt.email || '',
-            lastName: null,
-            firstName: null,
-            nickName: null,
-            title: null,
-            Gender: null,
-            Roles: decodedJwt.role || [],
-            Language: null,
-            fullName: null,
-            photoUrl: ''  // Sera remplacé par person-placeholder.png dans le template
-          };
-
-          return user;
-        }
       }
     }
+    console.log("Error fetching user data: No auth token found");
     return null;
   }
 

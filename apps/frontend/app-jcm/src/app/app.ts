@@ -21,14 +21,12 @@ export class App {
   constructor() {
     const translateService = this.ngxtranslateService;
     translateService.addLangs(['en','fr']);
-
     translateService.use(translateService.getBrowserLang() || 'en'); // use browser language by default
-    // get current language
   }
   currentLang = signal(this.ngxtranslateService.getCurrentLang() )// get current language
 
 logCurrentUser = effect(() => {
-    console.log(this.appStore.user());
+    console.log("User computed: ", this.appStore.user());
   });
 
 }

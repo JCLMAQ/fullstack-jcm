@@ -34,7 +34,7 @@ export function withAppAuthFeatures(): SignalStoreFeature {
           }
 
           const loginResponse = await store._authService.login(email, password);
-          console.log('user after login: ', loginResponse);
+          console.log('user after login (from authentication feature): ', loginResponse);
 
           const user = store._authService.user();
 
