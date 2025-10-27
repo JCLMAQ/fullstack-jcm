@@ -1,5 +1,6 @@
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { inject } from '@angular/core';
+import { withBusy } from '@fe/shared';
 import { DICTIONARIES_TOKEN } from '@fe/tokens';
 import {
   patchState,
@@ -11,7 +12,6 @@ import {
 } from '@ngrx/signals';
 import { DictionaryService } from '../../services/dictionaries/dictionary-service';
 import { NotificationService } from '../../services/notifications/notification-service';
-import { withBusy } from '../custom-store-features/with-busy/with-busy.feature';
 import { Dictionary } from './dictionary-token.model';
 import { initialDictionarySlice } from './dictionary.slice';
 import {

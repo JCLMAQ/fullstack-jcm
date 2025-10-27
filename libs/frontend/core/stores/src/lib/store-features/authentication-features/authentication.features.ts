@@ -56,7 +56,7 @@ export function withAppAuthFeatures(): SignalStoreFeature {
 
       logout: async () => {
         await store._authService.logout();
-        // patchState(store, { user: undefined });
+        patchState(store, { user: undefined });
         store._router.navigate(['pages/home']);
       },
 
@@ -85,6 +85,9 @@ export function withAppAuthFeatures(): SignalStoreFeature {
             horizontalPosition: 'right',
           });
           // Optional: track success
+          console.log('AppStore user computed: ', store.user());
+          console.log('AppStore authToken computed:  ', store.authToken());
+
 
           store._router.navigate(['/auth/login']);
         } catch (error) {

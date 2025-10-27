@@ -31,6 +31,8 @@ export class IamRegisterService {
    */
   userRegister(user: User): Observable<User> {
     // 🆕 Utilisation du nouvel endpoint IAM étendu
-    return this.httpClient.post<User>('api/authentication/register-extended', user);
+    const pathUrl = "api/authentication/register-extended";
+    // 🆕 Utilisation du nouvel endpoint IAM étendu
+    return this.httpClient.post<User>(`${pathUrl}`, user);
   }
 }

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from '@fe/shared';
 import { jwtDecode } from 'jwt-decode';
 import { firstValueFrom } from 'rxjs';
+import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from '../models/auth.model';
 
 
 
