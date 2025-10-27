@@ -40,29 +40,29 @@
       "@fe/stores": ["libs/frontend/core/stores/src/index.ts"],
       "@fe/tokens": ["libs/frontend/core/tokens/src/index.ts"],
       "@fe/dashboard": [
-        "libs/frontend/shared/components/dashboard/src/index.ts"
+        "libs/frontend/shared-misc/components/dashboard/src/index.ts"
       ],
-      "@fe/file-mgt": ["libs/frontend/shared/components/file-mgt/src/index.ts"],
+      "@fe/file-mgt": ["libs/frontend/shared-misc/components/file-mgt/src/index.ts"],
       "@fe/image-mgt": [
-        "libs/frontend/shared/components/image-mgt/src/index.ts"
+        "libs/frontend/shared-misc/components/image-mgt/src/index.ts"
       ],
       "@fe/loading-container": [
-        "libs/frontend/shared/components/loading-container/src/index.ts"
+        "libs/frontend/shared-misc/components/loading-container/src/index.ts"
       ],
-      "@fe/messages": ["libs/frontend/shared/components/messages/src/index.ts"],
-      "@fe/material": ["libs/frontend/shared/material/src/index.ts"],
+      "@fe/messages": ["libs/frontend/shared-misc/components/messages/src/index.ts"],
+      "@fe/material": ["libs/frontend/shared-misc/material/src/index.ts"],
       "@fe/date-utilities": [
-        "libs/frontend/shared/utils/date-utilities/src/index.ts"
+        "libs/frontend/shared-misc/utils/date-utilities/src/index.ts"
       ],
       "@fe/signalform-utilities": [
-        "libs/frontend/shared/utils/signalform-utilities/src/index.ts"
+        "libs/frontend/shared-misc/utils/signalform-utilities/src/index.ts"
       ],
       "@fe/user": ["libs/frontend/domains/user/src/index.ts"],
       "@fe/user-avatar": [
-        "libs/frontend/shared/components/user-avatar/src/index.ts"
+        "libs/frontend/shared-misc/components/user-avatar/src/index.ts"
       ],
       "@fe/user-avatar-editor": [
-        "libs/frontend/shared/components/user-avatar-editor/src/index.ts"
+        "libs/frontend/shared-misc/components/user-avatar-editor/src/index.ts"
       ],
       "@fe/shared": ["libs/frontend/core/shared/src/index.ts"]
     }
