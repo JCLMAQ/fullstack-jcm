@@ -7,6 +7,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { AppStore } from '@fe/stores';
+import { UserAvatar } from '@fe/user-avatar';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ResponsiveService } from '../../services/responsive/responsive-service';
 import { ThemeService } from '../../services/themes/theme-service';
@@ -23,6 +24,7 @@ import { DictionaryStore } from '../../store/dictionary/dictionary.store';
     // TitleCasePipe,
     TranslatePipe,
     // FlagComponent
+    UserAvatar
   ],
   templateUrl: './header.html',
   styleUrl: './header.scss',

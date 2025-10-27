@@ -141,15 +141,18 @@ export class IamAuth {
   }
 
 
-// Todo Update user photo both backend and frontend signal : chifeter vezrs un service spécifique ?
+// Todo Update user photo both backend and frontend signal : chifter vezrs un service spécifique ?
  async updateUserPhoto(photoUrl: string): Promise<{success: boolean, message: string, photoUrl?: string}> {
+
+    const pathUrl = "http://localhost:3500/api/authentication/update-photo";
+
     try {
       console.log('🔐 Token d\'authentification:', this.authToken());
       console.log('👤 Utilisateur actuel:', this.user());
       console.log('📤 Données envoyées:', { photoUrl });
 
       const response = await firstValueFrom(
-        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>('http://localhost:3100/api/authentication/update-photo', {
+        this.httpClient.put<{success: boolean, message: string, photoUrl?: string}>(`${pathUrl}`, {
           photoUrl
         })
       );

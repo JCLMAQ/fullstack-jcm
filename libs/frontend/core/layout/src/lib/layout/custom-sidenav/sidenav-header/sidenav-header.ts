@@ -1,15 +1,19 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppStore } from '@fe/stores';
+import { UserAvatar } from '@fe/user-avatar';
 import { UserAvatarEditor } from '@fe/user-avatar-editor';
 
 @Component({
   selector: 'lib-sidenav-header',
-  imports: [],
+  imports: [
+    UserAvatar
+  ],
   templateUrl: './sidenav-header.html',
   styleUrl: './sidenav-header.scss',
 })
 export class SidenavHeader {
+
   collapsed = input(false);
 
   appStore = inject(AppStore);

@@ -57,7 +57,7 @@ export function withAppAuthFeatures(): SignalStoreFeature {
       logout: async () => {
         await store._authService.logout();
         // patchState(store, { user: undefined });
-        store._router.navigate(['/home']);
+        store._router.navigate(['pages/home']);
       },
 
       register: async (

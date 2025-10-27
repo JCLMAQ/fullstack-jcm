@@ -71,10 +71,10 @@
 <!-- Login Menu -->
       @if (appStore.user(); as user) {
         <button mat-icon-button [mat-menu-trigger-for]="profileMenu">
-          <img
-            [src]="user?.photoUrl ?? 'person-placeholder.png'"
+         <lib-user-avatar
+            [photoUrl]="user?.photoUrl"
             alt="User profile picture"
-            class="w-[40px] h-[40px] object-cover rounded-full"
+            cssClass="w-[40px] h-[40px] rounded-full"
           />
         </button>
         <mat-menu #profileMenu="matMenu">
