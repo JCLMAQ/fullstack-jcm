@@ -1,12 +1,12 @@
 import { inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
-import { AuthService } from "../../features/auth/Services/auth.service";
+import { IamAuth } from "../iam-auth/iam-auth";
 
 
 export const isUserAuthenticated: CanActivateFn =
   (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-    const authService = inject(AuthService);
+    const authService = inject(IamAuth);
     const router = inject(Router);
     const snackbar = inject(MatSnackBar);
     // const messagesService = inject(MessagesService);

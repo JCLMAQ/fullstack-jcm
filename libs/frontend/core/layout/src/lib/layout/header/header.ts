@@ -30,12 +30,15 @@ import { DictionaryStore } from '../../store/dictionary/dictionary.store';
   styleUrl: './header.scss',
 })
 export class Header {
+
+  appStore = inject(AppStore);
+  router = inject(Router);
+
   dictionaryStore = inject(DictionaryStore);
   ngxtranslateService = inject(TranslateService);
   themeService = inject(ThemeService);
   responsiveService = inject(ResponsiveService);
-  appStore = inject(AppStore);
-  router = inject(Router);
+
 
   readonly sidenav = viewChild.required(MatSidenav);
 

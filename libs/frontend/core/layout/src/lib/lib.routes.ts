@@ -1,6 +1,5 @@
 import { Route } from '@angular/router';
 import { Layout } from './layout/layout';
-
 export const layoutRoutes: Route[] = [
   {
     path: '',
@@ -27,6 +26,7 @@ children: [
         path: 'dashboard',
         loadChildren: () =>
           import('@fe/dashboard').then((m) => m.dashboardRoutes),
+          // canActivate: [isUserAuthenticated],
       },
     ],
   }
