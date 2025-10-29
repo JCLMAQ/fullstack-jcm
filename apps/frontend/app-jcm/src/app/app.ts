@@ -1,6 +1,6 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AppStore } from '@fe/stores';
+// import { AppStore } from '@fe/stores';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -16,7 +16,7 @@ export class App {
 
   protected title = 'app-jcm';
 
-  appStore = inject(AppStore);
+  // appStore = inject(AppStore);
   ngxtranslateService = inject(TranslateService);
   constructor() {
     const translateService = this.ngxtranslateService;
@@ -25,8 +25,8 @@ export class App {
   }
   currentLang = signal(this.ngxtranslateService.getCurrentLang() )// get current language
 
-logCurrentUser = effect(() => {
-    console.log("User computed: ", this.appStore.user());
-  });
+// logCurrentUser = effect(() => {
+//     console.log("User computed: ", this.appStore.user());
+//   });
 
 }

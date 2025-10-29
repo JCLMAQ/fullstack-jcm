@@ -21,6 +21,10 @@ export function withAppAuthFeatures(): SignalStoreFeature {
       _router: inject(Router),
       _snackbar: inject(MatSnackBar),
     })),
+     // withComputed((store) => ({
+  //   user: computed(() => store._authService.user()),
+  //   authToken: computed(() => store._authService.authToken()),
+  // })),
     withMethods((store) => ({
       login: async (email: string, password: string) => {
 

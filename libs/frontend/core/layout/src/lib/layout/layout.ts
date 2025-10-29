@@ -1,8 +1,7 @@
-import { Component, effect, inject, viewChild } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
-import { AppStore } from '@fe/stores';
 import { ResponsiveService } from '../services/responsive/responsive-service';
 import { CustomSidenav } from './custom-sidenav/custom-sidenav';
 import { Header } from './header/header';
@@ -30,8 +29,8 @@ export class Layout {
       );
     }
   }
-  appStore = inject(AppStore)
-  logCurrentUser = effect(() => {
-    console.log("App Store user computed: ", this.appStore.user());
-  });
+  // appStore = inject(AppStore)
+  // logCurrentUser = effect(() => {
+  //   console.log("App Store user computed: ", this.appStore.user());
+  // });
 }
