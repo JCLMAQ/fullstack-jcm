@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
+import { AppStore } from '@fe/stores';
 import { UserAvatar } from '@fe/user-avatar';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ResponsiveService } from '../../services/responsive/responsive-service';
@@ -30,7 +31,7 @@ import { DictionaryStore } from '../../store/dictionary/dictionary.store';
 })
 export class Header {
 
-  // appStore = inject(AppStore);
+  appStore = inject(AppStore);
   router = inject(Router);
 
   dictionaryStore = inject(DictionaryStore);
