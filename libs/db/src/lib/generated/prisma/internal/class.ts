@@ -22,12 +22,12 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/jcm/Programmation/Monorepo/fullstack-jcm/libs/db/src/lib/generated/prisma",
+      "value": "/Users/jean-claudemaquinay/Programmation/Monorepo/fullstack-jcm/libs/db/src/lib/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
-      "generatedFileExtension": "ts",
       "importFileExtension": "ts",
+      "generatedFileExtension": "ts",
       "engineType": "library"
     },
     "binaryTargets": [
@@ -38,7 +38,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/jcm/Programmation/Monorepo/fullstack-jcm/libs/db/src/lib/prisma/schema.prisma",
+    "sourceFilePath": "/Users/jean-claudemaquinay/Programmation/Monorepo/fullstack-jcm/libs/db/src/lib/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../prisma",
