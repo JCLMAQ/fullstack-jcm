@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '@db/prisma';
 import { jwtDecode } from 'jwt-decode';
 import { firstValueFrom } from 'rxjs';
-import { IJwt, ILoginResponse, IRegisterResponse, IUserLogged } from '../models/auth.model';
+import { IJwt, ILoginResponse, IRegisterResponse } from '../models/auth.model';
 
 
 
@@ -32,7 +33,7 @@ export class IamAuth {
   httpClient = inject(HttpClient);
   router = inject(Router);
 
-  #userSignal = signal<IUserLogged | undefined>(undefined);
+  #userSignal = signal<User | undefined>(undefined);
   user = this.#userSignal.asReadonly();
 
   #authTokenSignal = signal<string | undefined>(undefined);
@@ -189,8 +190,9 @@ export class IamAuth {
    * AUTHS: GET /api/auths/auth/loggedUser/:email
    * IAM:   GET /api/authentication/user/:email ✅
    */
-    async fetchUser(): Promise<IUserLogged | undefined | null> {
-      const pathUrl = "api/authentication/user";
+    async fetchUser(): Promise<User | undefined | null> {
+      // const pathUrl = "api/authentication/user";
+      const pathUrl = "api/authentication/profile";
       //  get user data from backend with authToken
       // const apiUrl = "api/auths/auth/loggedUser/";
       const authToken = this.authToken();
@@ -203,7 +205,7 @@ export class IamAuth {
           try {
             const response = await firstValueFrom(
               // this.httpClient.get<{ user: IUserLogged, fullName: string  } | { success: boolean, message: string}>(`${pathUrl}/${emailToCheck}`)
-               this.httpClient.get<{user: IUserLogged, fullName: string}>('api/authentication/profile')
+              this.httpClient.get<{user: User, fullName: string}>(`${pathUrl}`)
 
             );
             console.log("Profil récupéré depuis l'API:", response);
@@ -212,19 +214,19 @@ export class IamAuth {
               return null;
             }
 
-            const user: IUserLogged = {
-              email: response.user.email || '',
-              lastName: response.user.lastName || null,
-              firstName: response.user.firstName || null,
-              nickName: response.user.nickName || null,
-              title: response.user.title || null,
-              Gender: response.user.Gender || null,
-              Roles: response.user.Roles || [],
-              Language: response.user.Language || null,
-              fullName: response.fullName || null,
-              photoUrl: response.user.photoUrl || ''  // ✅ Récupère la vraie photoUrl depuis la DB
-            };
-
+            // const user: User = {
+            //   email: response.user.email || '',
+            //   lastName: response.user.lastName || null,
+            //   firstName: response.user.firstName || null,
+            //   nickName: response.user.nickName || null,
+            //   title: response.user.title || null,
+            //   Gender: response.user.Gender || null,
+            //   Roles: response.user.Roles || [],
+            //   Language: response.user.Language || null,
+            //   // fullName: response.fullName || null,
+            //   photoUrl: response.user.photoUrl || ''  // ✅ Récupère la vraie photoUrl depuis la DB
+            // };
+            const user = response.user;
             return user;
           } catch (error) {
 
@@ -234,20 +236,29 @@ export class IamAuth {
             const decodedJwt: IJwt = jwtDecode(authToken);
             console.log("Fallback - Decoded JWT: ", decodedJwt);
 
-            const user: IUserLogged = {
-              email: decodedJwt.email || '',
-              lastName: null,
-              firstName: null,
-              nickName: null,
-              title: null,
-              Gender: null,
-              Roles: decodedJwt.role || [],
-              Language: null,
-              fullName: null,
-              photoUrl: ''  // Sera remplacé par person-placeholder.png dans le template
-            };
+            // const user: User = {
+//            const user: User = {
+//   id: null,
+//   numSeq: null,
+//   createdAt: null,
+//   updatedAt: null,
+//   published: null,
+//   isPublic: null,
+//   isDeleted: null,
+//   isDeletedDT: null,
+//   email: decodedJwt.email || '',
+//   lastName: null,
+//   firstName: null,
+//   nickName: null,
+//   title: null,
+//   Gender: null,
+//   Roles: decodedJwt.role || [],
+//   Language: null,
+//   photoUrl: decodedJwt.photoUrl || '',
+// };
+            // };
 
-            return user;
+            // return user;
           }
       }
     }

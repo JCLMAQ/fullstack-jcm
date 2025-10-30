@@ -1,7 +1,10 @@
-import { IUserLogged } from '@fe/shared';
+// import { IUserLogged } from '@fe/shared';
+
+import { User } from "@db/prisma";
 
 export type AppSlice = {
-  readonly user: IUserLogged | undefined;
+  readonly user: User | undefined;
+    // readonly user: IUserLogged | undefined;
   readonly authToken: string | undefined;
   // readonly selectedLanguage: string;
   // readonly possibleLanguages: string[];
