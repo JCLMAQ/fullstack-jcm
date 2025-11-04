@@ -1,7 +1,7 @@
 
 services:
     postgres:
-        container_name: postgres-jcm-db
+        container_name: postgres-jcm-db-3500
         image: postgres:latest
         environment:
             POSTGRES_USER: ${POSTGRES_USER}
@@ -15,12 +15,12 @@ services:
             # - "5432:5432"
         # network_mode: "host"
         networks:
-            - fullstack-jcm-network
+            - fullstack-jcm-network-3500
         #         ipv4_address: 172.16.238.10
         restart: unless-stopped
 
     pgadmin:
-        container_name: pgadmin-jcm-db
+        container_name: pgadmin-jcm-db-3500
         image: dpage/pgadmin4:latest
         environment:
             PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
@@ -31,7 +31,7 @@ services:
             - "${PGADMIN_PORT}:80"
             # - "5050:80"
         networks:
-            - fullstack-jcm-network
+            - fullstack-jcm-network-3500
         restart: unless-stopped
 
     # nest-api:
@@ -49,13 +49,13 @@ services:
     #       - ./.env
 
 networks:
-    fullstack-jcm-network:
+    fullstack-jcm-network-3500:
 
 volumes:
     postgres:
-        name: basedev-jcm-postgres
+        name: basedev-jcm-postgres-3500
     pgadmin:
-        name: pgadmin-jcm
+        name: pgadmin-jcm-3500
 
 # container_name:  this is what we will call our container- for simplicity have it match the service name.
 # image if we are downloading an image from docker hub, we will put it here.
