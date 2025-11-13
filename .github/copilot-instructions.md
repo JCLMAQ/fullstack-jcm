@@ -17,13 +17,14 @@ Cette application est un **monorepo Nx** avec une architecture fullstack basée 
 - **Génération** : `pnpm run prisma:generate`
 
 ### NestJS (Backend)
-- **IAM/Auth** : Module d'authentification complet dans `libs/backend/iam` + `libs/backend/auths`
+- **IAM/Auth** : Module d'authentification complet dans `libs/backend/iam` Ancienne version: `libs/backend/auths`
 - **Guards multiples** : Authentication, Roles, Permissions, Policies (tous actifs par défaut)
 - **Configuration** : Variables d'environnement via `DbConfigService` et base de données
+- **Proxy** : Script `scripts/setproxyconfig.ts` génère `proxy.config.json`
 
 ### Angular (Frontend)
 - **Configuration dynamique** : Script `scripts/setenv.ts` génère `environment.ts` depuis `.env`
-- **Proxy** : Script `scripts/setproxyconfig.ts` génère `proxy.config.json`
+- **Proxy** : `proxy.config.json` généré par le backend pour les appels API
 - **Démarrage** : Utilise toujours les scripts de config avant le serve
 
 ## Workflows de Développement
@@ -71,14 +72,10 @@ pnpm run start:frontend:dev
 
 ## Points d'Intégration Critiques
 
-<!-- ### ZenStack Middleware
-Route `/zen` expose automatiquement toutes les entités via REST avec politiques d'accès.
-Headers requis : `x-user-id`, `x-user-role` -->
 
 ### Services Prisma
 - `PrismaService` : Service de base
-- `EnhancedPrismaService` : Avec politiques ZenStack (recommandé)
-- Import : `@db/prisma` pour le service, `@prisma/client` pour les types
+- Import : `@db/prisma` pour le service, `@db/prisma-client` pour les types
 
 ### Configuration Environment
 Variables critiques à définir dans `.env` :
