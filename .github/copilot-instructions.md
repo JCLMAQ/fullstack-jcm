@@ -2,7 +2,8 @@
 
 ## Architecture du Projet
 
-Cette application est un **monorepo Nx** avec une architecture fullstack basée sur **ZenStack + Prisma + NestJS + Angular**.
+Cette application est un **monorepo Nx** avec une architecture fullstack basée sur **Prisma + NestJS + Angular**.
+La Base de Données est une base PostgreSQL dockérisée gérée via Prisma
 
 ### Structure Clé
 - **Apps** : `apps/backend/nest-app` (NestJS) + `apps/frontend/app-jcm` (Angular)
