@@ -8,13 +8,14 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "webpack-cli build",
+        "command": "webpack-cli build --config webpack.config.cjs --node-env=production",
         "args": ["--node-env=production"],
         "cwd": "apps/backend/nest-app"
       },
       "configurations": {
         "development": {
-          "args": ["--node-env=development"]
+          "args": ["--node-env=development"],
+          "command": "webpack-cli build --config webpack.config.cjs --node-env=development"
         }
       }
     },
